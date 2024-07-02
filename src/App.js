@@ -1,38 +1,26 @@
-import { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
+import UserService from './API/UserService';
+import axios from 'axios';
 
-function App() {
-  const [clients, setClients] = useState([]);
+const UserListComponent = () => {
+  const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    const fetchClients = async () => {
-      try {
-        const res = await fetch("http://localhost:8080/clients");
-        if (!res.ok) {
-          throw new Error(`HTTP error! status: ${res.status}`);
-        }
-        const data = await res.json();
-        setClients(data);
-        console.log("Fetched clients:", data);
-      } catch (error) {
-        console.error("Failed to fetch clients:", error);
-      }
-    };
-
-    fetchClients();
-  }, []);
+    UserService.getUsers().then(res => {
+      setUsers(res.data)
+    })
+  }, [])
 
   return (
     <div>
-      <h1>Client List</h1>
+      <h1>User List</h1>
       <ul>
-        {clients.map(client => (
-          <li key={client.id}>
-            {client.name} - {client.email}
-          </li>
+        {users.map(user => (
+          <li key={user.id}>{user.name} - {user.email}</li>
         ))}
       </ul>
     </div>
   );
-}
+};
 
-export default App;
+export default UserListComponent;
