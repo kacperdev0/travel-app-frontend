@@ -12,6 +12,11 @@ const UserListComponent = () => {
     email: ""
   })
 
+  const [loginData, setLoginData] = useState({
+    login: "",
+    password: ""
+  })
+
   const handleLoginChange = (e) => {
     const copy = { ...registerData }
     copy.login = e.target.value
@@ -30,8 +35,24 @@ const UserListComponent = () => {
     setRegisterData(copy)
   }
 
+  const handleLoginLoginChange = (e) => {
+    const copy = { ...loginData }
+    copy.login = e.target.value
+    setLoginData(copy)
+  }
+
+  const handleLoginPasswordChange = (e) => {
+    const copy = { ...loginData }
+    copy.password = e.target.value
+    setLoginData(copy)
+  }
+
   const handleRegistration = () => {
     UserService.saveUser(registerData)
+  }
+
+  const handleLogin = () => {
+    
   }
 
 
@@ -52,7 +73,12 @@ const UserListComponent = () => {
 
       </form>
 
-      <h2>{registerData.login}</h2>
+      <h1>Login</h1>
+      <form onSubmit={handleRegistration}>
+        <input placeholder='login' onChange={(event) => {handleLoginLoginChange(event)}} value={loginData.login}></input><br></br>
+        <input placeholder='password' onChange={(event) => {handleLoginPasswordChange(event)}} value={loginData.password}></input><br></br>
+        <button type='submit'>Login</button>
+      </form>
 
       <h1>User List</h1>
       <ul>
