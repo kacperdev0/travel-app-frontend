@@ -10,6 +10,10 @@ class UserService {
     saveUser(user) {
         return axios.post(USER_API_URL, user)
     }
+
+    loginUser(loginData) {
+        return axios.post(`${USER_API_URL}/login`, loginData);
+    }
 }
 
 export default new UserService()

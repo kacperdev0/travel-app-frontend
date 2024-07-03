@@ -6,6 +6,8 @@ import { eventWrapper } from '@testing-library/user-event/dist/utils';
 const UserListComponent = () => {
   const [users, setUsers] = useState([]);
 
+  const [loggedData, setLoggedData] = useState(null);
+
   const [registerData, setRegisterData] = useState({
     login: "",
     password: "",
@@ -51,9 +53,17 @@ const UserListComponent = () => {
     UserService.saveUser(registerData)
   }
 
-  const handleLogin = () => {
-    
-  }
+  const handleLogin = (e) => {
+    e.preventDefault()
+
+    UserService.loginUser(loginData)
+      .then(res => {
+        setLoggedData(res.data);
+      })
+      .catch(error => {
+        console.error('Login error:', error.response.data);
+      });
+  };
 
 
   useEffect(() => {
@@ -74,16 +84,22 @@ const UserListComponent = () => {
       </form>
 
       <h1>Login</h1>
-      <form onSubmit={handleRegistration}>
+      <form onSubmit={event => handleLogin(event)}>
         <input placeholder='login' onChange={(event) => {handleLoginLoginChange(event)}} value={loginData.login}></input><br></br>
         <input placeholder='password' onChange={(event) => {handleLoginPasswordChange(event)}} value={loginData.password}></input><br></br>
         <button type='submit'>Login</button>
       </form>
 
+      {loggedData ? (
+        <p>Logged in as: {loggedData.login}</p>
+      ) : (
+        <p>Not logged in</p>
+      )}
+
       <h1>User List</h1>
       <ul>
         {users.map(user => (
-          <li key={user.id}>{user.name} - {user.email}</li>
+          <li key={user.id}>{user.login} - {user.email}</li>
         ))}
       </ul>
     </div>
