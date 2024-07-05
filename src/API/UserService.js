@@ -4,15 +4,15 @@ const USER_API_URL= "http://localhost:8080/api/users"
 
 class UserService {
     getUsers() {
-        return axios.get(USER_API_URL)
+        return axios.get(`${USER_API_URL}/getAllUsers`)
     }
 
     saveUser(user) {
-        return axios.post(USER_API_URL, user)
+        return axios.post(`${USER_API_URL}/public/register`, user)
     }
 
     loginUser(loginData) {
-        return axios.post(`${USER_API_URL}/login`, loginData);
+        return axios.post(`${USER_API_URL}/public/login`, loginData);
     }
 }
 

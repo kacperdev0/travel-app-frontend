@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import UserService from "../API/UserService";
 
 const RegisterComponent = () => {
@@ -26,14 +26,15 @@ const RegisterComponent = () => {
         setRegisterData(copy)
     }
 
-    const handleRegistration = () => {
+    const handleRegistration = (e) => {
+        e.preventDefault()
         UserService.saveUser(registerData)
       }
 
     return (
         <div>
             <h1>Register</h1>
-            <form onSubmit={handleRegistration}>
+            <form onSubmit={(event) => handleRegistration(event)}>
                 <input placeholder='login' onChange={(event) => {handleLoginChange(event)}} value={registerData.login}></input><br></br>
                 <input placeholder='password' onChange={(event) => {handlePasswordChange(event)}} value={registerData.password}></input><br></br>
                 <input placeholder='email' onChange={(event) => {handleEmailChange(event)}} value={registerData.email} ></input><br></br>
