@@ -27,6 +27,7 @@ const LoginComponent = () => {
         UserService.loginUser(loginData)
           .then(res => {
             setLoggedData(res.data);
+            console.log(res)
           })
           .catch(error => {
             console.error('Login error:', error.response.data);
