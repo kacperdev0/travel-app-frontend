@@ -1,19 +1,21 @@
 import axios from "axios";
 
-const USER_API_URL= "http://localhost:8080/api"
+const USER_API_URL = "http://localhost:8080/api";
 
 class UserService {
     getUsers() {
-        return axios.get(`${USER_API_URL}users/getAllUsers`)
+        return axios.get(`${USER_API_URL}/users/getAllUsers`);
     }
 
     saveUser(user) {
-        return axios.post(`${USER_API_URL}/auth/register`, user)
+        return axios.post(`${USER_API_URL}/auth/register`, user);
     }
 
     loginUser(loginData) {
-        return axios.post(`${USER_API_URL}/auth/login`, loginData);
+        return axios.post(`${USER_API_URL}/auth/login`, loginData, {
+            withCredentials: true
+        });
     }
 }
 
-export default new UserService()
+export default new UserService();

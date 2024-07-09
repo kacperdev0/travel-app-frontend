@@ -1,26 +1,27 @@
-import { useState, useEffect } from "react";
-import UserService from "../API/UserService";
+import React, { useState, useEffect } from 'react';
+import UserService from '../API/UserService';
 
-const MainPageComponent = () => {
-    const [users, setUsers] = useState([])
+const UserList = () => {
+    const [users, setUsers] = useState([]);
 
     useEffect(() => {
-        UserService.getUsers().then(res => {
-            setUsers(res.data)
+      UserService.getUsers()
+        .then(response => {
+          setUsers(response.data); // Assuming your API returns data directly
         })
-    }, [])
-
+        .catch(error => console.error('Error fetching data:', error));
+    }, []);
+  
     return (
-        <div>
-            <ol>
-            {
-                users.map((user, index) => (
-                    <li key={index}>{user.login} - {user.password} - {user.email}</li>
-                ))
-            }
-            </ol>
-        </div>
-    )
-}
+      <div>
+        <h2>List of Users</h2>
+        <ul>
+          {users.map(user => (
+            <li key={user.id}>{user.login}</li>
+          ))}
+        </ul>
+      </div>
+    );
+};
 
-export default MainPageComponent;
+export default UserList;
