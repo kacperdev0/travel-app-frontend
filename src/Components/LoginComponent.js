@@ -8,8 +8,6 @@ const LoginComponent = () => {
     password: ""
   });
 
-  const [loggedData, setLoggedData] = useState();
-
   const handleLoginChange = (e) => {
     const copy = { ...loginData };
     copy.login = e.target.value;
@@ -25,13 +23,13 @@ const LoginComponent = () => {
   const handleLogin = (e) => {
     e.preventDefault();
 
+    console.log(loginData)
     UserService.loginUser(loginData)
       .then(res => {
-        setLoggedData(res.data);
         console.log(res);
       })
       .catch(error => {
-        console.error('Login error:', error.response.data);
+        console.error('Login error:', error);
       });
   };
 
