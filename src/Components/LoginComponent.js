@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import UserService from "../API/UserService";
 import { Container, TextField, Button, Typography, Box, CssBaseline } from '@mui/material';
+import { useLocation } from "react-router-dom"
 
 const LoginComponent = () => {
+  const location = useLocation()
+  const message = location.state?.message
+
   const [loginData, setLoginData] = useState({
     login: "",
     password: ""
@@ -43,6 +47,9 @@ const LoginComponent = () => {
           alignItems: 'center',
         }}
       >
+        <Typography component="h3">
+          {message}
+        </Typography>
         <Typography component="h1" variant="h5">
           Login
         </Typography>

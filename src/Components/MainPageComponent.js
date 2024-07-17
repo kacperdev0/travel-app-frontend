@@ -14,7 +14,7 @@ const UserList = () => {
         .catch(error => {
           console.error(error.response.status)
           if (error.response.status === 401) {
-              navigate("/login")
+              navigate("/login", {state: { message: "Your session expired"}})
           }
         });
     }, []);
