@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import UserService from "../API/UserService";
 import { Container, TextField, Button, Typography, Box, CssBaseline } from '@mui/material';
 import { useLocation } from "react-router-dom"
+import ErrorMessageComponent from "./ErrorMessageComponent";
 
 const LoginComponent = () => {
   const location = useLocation()
@@ -47,9 +48,7 @@ const LoginComponent = () => {
           alignItems: 'center',
         }}
       >
-        <Typography component="h3">
-          {message}
-        </Typography>
+        <ErrorMessageComponent message={message}/>
         <Typography component="h1" variant="h5">
           Login
         </Typography>
