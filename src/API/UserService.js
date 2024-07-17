@@ -3,6 +3,10 @@ import axios from "axios";
 const USER_API_URL = "http://localhost:8080/api";
 
 class UserService {
+    constructor(navigate){
+        this.navigate = navigate;
+    }
+
     getUsers() {
         return axios.get(`${USER_API_URL}/protected/userDetails`, {
             withCredentials: true
@@ -11,12 +15,12 @@ class UserService {
 
     saveUser(user) {
         return axios.post(`${USER_API_URL}/auth/register`, user);
-    }g
+    }
 
     loginUser(loginData) {
         return axios.post(`${USER_API_URL}/auth/login`, loginData, {
             withCredentials: true
-        });
+        })
     }
 }
 

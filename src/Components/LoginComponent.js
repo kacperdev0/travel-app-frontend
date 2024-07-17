@@ -24,14 +24,13 @@ const LoginComponent = () => {
     e.preventDefault();
 
     console.log(loginData)
-    UserService.loginUser(loginData)
-      .then(res => {
-        console.log(res);
-      })
-      .catch(error => {
-        console.error('Login error:', error);
-      });
-  };
+    UserService.loginUser(loginData).then(response => {
+      console.log(response.data)
+     })
+     .catch(error => {
+      console.error('Error: ', error)
+     });
+  }
 
   return (
     <Container component="main" maxWidth="xs">
