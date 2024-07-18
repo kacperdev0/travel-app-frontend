@@ -12,10 +12,11 @@ const UserList = () => {
          console.log(response.data)
         })
         .catch(error => {
-          console.error(error.response.status)
-          if (error.response.status === 401) {
-              navigate("/login", {state: { message: "Your session expired"}})
-          }
+          if (error.response) {
+            if (error.response.status === 401) {
+                navigate("/login", {state: { message: "Your session expired"}})
+            }
+        }
         });
     }, []);
   
