@@ -1,6 +1,7 @@
 import { ListItem, ListItemText, Drawer, List, Button } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
 
 const NavigationBarComponent = () => {
   const [open, setOpen] = useState(false)
@@ -11,7 +12,7 @@ const NavigationBarComponent = () => {
 
   return (
     <div>
-      <Button onClick={toggleDrawer}>Menu</Button>
+      <Button onClick={toggleDrawer}><MenuIcon/></Button>
       <Drawer anchor="left" open={open} onClose={toggleDrawer}>
         <List>
           <ListItem button component={Link} to="/" >
