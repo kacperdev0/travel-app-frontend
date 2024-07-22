@@ -1,9 +1,11 @@
 import React from 'react';
-import { MapContainer, TileLayer } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import HotelService from '../API/HotelService';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 const MapComponent = () => {
+  const [hotels, setHotels] = useState([]);
+
   useEffect(() => {
     const params = {
       destId: '-2092174',
@@ -21,7 +23,8 @@ const MapComponent = () => {
     };
 
     HotelService.getHotels(params).then(res => {
-      console.log(res.data);
+      setHotels(res.data)
+      console.log(res.data)
     }).catch(error => {
       console.error('Error fetching hotels:', error);
     });
@@ -38,6 +41,14 @@ const MapComponent = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
         />
+        {hotels.map((hotel, index) => (
+          <Marker key={index} position={[hotel.latitude, hotel.longitude]}>
+            <Popup>
+              {hotel.name}<br />
+              {hotel.address}
+            </Popup>
+          </Marker>
+        ))}
       </MapContainer>
     </div>
   );
