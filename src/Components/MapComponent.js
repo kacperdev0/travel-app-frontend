@@ -36,7 +36,7 @@ const MapComponent = () => {
         {hotels.map((hotel, index) => (
           <Marker key={index} position={[hotel.lat, hotel.lon]}>
             <Popup>
-              
+              {hotel.tags.name}
             </Popup>
           </Marker>
         ))}

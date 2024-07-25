@@ -1,7 +1,9 @@
-import { ListItem, ListItemText, Drawer, List, Button } from '@mui/material';
+import { ListItem, ListItemText, Drawer, List, Button, AppBar, Toolbar, IconButton } from '@mui/material';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import MenuIcon from '@mui/icons-material/Menu';
+import Menu from '@mui/material/Menu';
+import MenuItem from '@mui/material/MenuItem';
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const NavigationBarComponent = () => {
   const [open, setOpen] = useState(false)
@@ -11,22 +13,12 @@ const NavigationBarComponent = () => {
   }
 
   return (
-    <div>
-      <Button onClick={toggleDrawer}><MenuIcon/></Button>
-      <Drawer anchor="left" open={open} onClose={toggleDrawer}>
-        <List>
-          <ListItem button component={Link} to="/" >
-            <ListItemText primary="Home" />
-          </ListItem>
-          <ListItem button component={Link} to="/login" >
-            <ListItemText primary="Login" />
-          </ListItem>
-          <ListItem button component={Link} to="/register" >
-            <ListItemText primary="Register" />
-          </ListItem>
-        </List>
-      </Drawer>
-    </div>
+    <AppBar position='static'>
+      <Toolbar>
+          <IconButton color="inherit"><AccountCircleIcon/></IconButton>
+          <Button color="inherit" component={Link} to="/">Home</Button>
+      </Toolbar>
+    </AppBar>
   );
 };
 
