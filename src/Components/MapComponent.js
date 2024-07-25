@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import HotelService from '../API/HotelService';
 import { Grid, Typography, List, ListItem, ListItemText } from '@mui/material';
+import Paper from '@mui/material/Paper';
 
 const MapComponent = () => {
   const [hotels, setHotels] = useState([]);
@@ -32,10 +33,12 @@ const MapComponent = () => {
           <List>
             {hotels.map((hotel, index) => (
               <ListItem key={index}>
-                <ListItemText
-                  primary={hotel.tags.name}
-                  secondary={hotel.tags.description}
-                />
+                <Paper elevation={3} style={{width: "94%", padding: "3%"}}>
+                  <ListItemText
+                    primary={hotel.tags.name}
+                    secondary={hotel.tags["addr:street"]}
+                  />
+                </Paper>
               </ListItem>
             ))}
           </List>
