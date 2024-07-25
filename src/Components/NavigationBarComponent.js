@@ -6,14 +6,8 @@ import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 
 const NavigationBarComponent = () => {
-  const [open, setOpen] = useState(false)
-
-  const toggleDrawer = () => {
-    setOpen(!open)
-  }
-
   return (
-    <AppBar position='static'>
+    <AppBar position='static' style={{height: "10hv"}}>
       <Toolbar>
           <IconButton color="inherit"><AccountCircleIcon/></IconButton>
           <Button color="inherit" component={Link} to="/">Home</Button>
