@@ -6,6 +6,7 @@ import Paper from '@mui/material/Paper';
 
 const MapComponent = () => {
   const [hotels, setHotels] = useState([]);
+  const [selectedHotel, setSelectedHotel] = useState(null)
 
   useEffect(() => {
     const params = {
@@ -26,23 +27,31 @@ const MapComponent = () => {
   return (
     <Grid container style={{ height: '93vh' }}>
       <Grid item xs={12} md={4} style={{ display: 'flex', flexDirection: 'column', padding: "3hv", boxSizing: 'border-box', overflowY: 'auto' }}>
-        <Typography variant="h6" gutterBottom>
-          Hotel List
-        </Typography>
-        <div style={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(92vh - 64px)' }}>
-          <List>
-            {hotels.map((hotel, index) => (
-              <ListItem key={index}>
-                <Paper elevation={3} style={{width: "94%", padding: "3%"}}>
-                  <ListItemText
-                    primary={hotel.tags.name}
-                    secondary={hotel.tags["addr:street"]}
-                  />
-                </Paper>
-              </ListItem>
-            ))}
-          </List>
+        {selectedHotel ? (
+          <div>
+          {selectedHotel.tags.name}
+          </div>
+        ) : (
+        <div>
+          <Typography variant="h6" gutterBottom>
+            Hotel List
+          </Typography>
+          <div style={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(92vh - 64px)' }}>
+            <List>
+              {hotels.map((hotel, index) => (
+                <ListItem key={index}>
+                  <Paper elevation={3} style={{width: "94%", padding: "3%"}} onClick={() => {setSelectedHotel(hotel)}}>
+                    <ListItemText
+                      primary={hotel.tags.name}
+                      secondary={hotel.tags["addr:street"]}
+                    />
+                  </Paper>
+                </ListItem>
+              ))}
+            </List>
+          </div>
         </div>
+        )}
       </Grid>
       <Grid item xs={12} md={8} style={{ height: '100%' }}>
         <MapContainer
