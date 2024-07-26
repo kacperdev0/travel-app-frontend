@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import HotelService from '../API/HotelService';
 import { Grid, Typography, List, ListItem, ListItemText } from '@mui/material';
 import Paper from '@mui/material/Paper';
+import HotelDataComponent from './HotelDataComponent';
 
 const MapComponent = () => {
   const [hotels, setHotels] = useState([]);
@@ -28,8 +29,8 @@ const MapComponent = () => {
     <Grid container style={{ height: '93vh' }}>
       <Grid item xs={12} md={4} style={{ display: 'flex', flexDirection: 'column', padding: "3hv", boxSizing: 'border-box', overflowY: 'auto' }}>
         {selectedHotel ? (
-          <div>
-          {selectedHotel.tags.name}
+          <div style={{padding: "2vh"}}>
+            <HotelDataComponent hotelData={selectedHotel} setHotelData={setSelectedHotel}/>
           </div>
         ) : (
         <div>
