@@ -4,10 +4,11 @@ import HotelService from '../API/HotelService';
 import { Grid, Typography, List, ListItem, ListItemText } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import HotelDataComponent from './HotelDataComponent';
+import '../CSS/MapStyle.css'; 
 
 const MapComponent = () => {
   const [hotels, setHotels] = useState([]);
-  const [selectedHotel, setSelectedHotel] = useState(null)
+  const [selectedHotel, setSelectedHotel] = useState(null);
 
   useEffect(() => {
     const params = {
@@ -26,39 +27,39 @@ const MapComponent = () => {
   }, []);
 
   return (
-    <Grid container style={{ height: '93vh' }}>
-      <Grid item xs={12} md={4} style={{ display: 'flex', flexDirection: 'column', padding: "3hv", boxSizing: 'border-box', overflowY: 'auto' }}>
+    <Grid container className="container">
+      <Grid item xs={12} md={4} className="listContainer">
         {selectedHotel ? (
-          <div style={{padding: "2vh"}}>
-            <HotelDataComponent hotelData={selectedHotel} setHotelData={setSelectedHotel}/>
+          <div style={{ padding: "2vh" }}>
+            <HotelDataComponent hotelData={selectedHotel} setHotelData={setSelectedHotel} />
           </div>
         ) : (
-        <div>
-          <Typography variant="h6" gutterBottom>
-            Hotel List
-          </Typography>
-          <div style={{ flex: 1, overflowY: 'auto', maxHeight: 'calc(92vh - 64px)' }}>
-            <List>
-              {hotels.map((hotel, index) => (
-                <ListItem key={index}>
-                  <Paper elevation={3} style={{width: "94%", padding: "3%"}} onClick={() => {setSelectedHotel(hotel)}}>
-                    <ListItemText
-                      primary={hotel.tags.name}
-                      secondary={hotel.tags["addr:street"]}
-                    />
-                  </Paper>
-                </ListItem>
-              ))}
-            </List>
+          <div>
+            <Typography padding="1vh" align='center' variant="h6" gutterBottom>
+              Hotel List
+            </Typography>
+            <div className="hotelList">
+              <List>
+                {hotels.map((hotel, index) => (
+                  <ListItem key={index}>
+                    <Paper elevation={3} className="paper" onClick={() => { setSelectedHotel(hotel) }}>
+                      <ListItemText
+                        primary={hotel.tags.name}
+                        secondary={hotel.tags["addr:street"]}
+                      />
+                    </Paper>
+                  </ListItem>
+                ))}
+              </List>
+            </div>
           </div>
-        </div>
         )}
       </Grid>
       <Grid item xs={12} md={8} style={{ height: '100%' }}>
         <MapContainer
           center={[52.2297, 21.0122]}
           zoom={13}
-          style={{ height: '100%', width: '100%' }}
+          className="mapContainer"
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

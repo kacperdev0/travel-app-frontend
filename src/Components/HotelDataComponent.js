@@ -1,9 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import HotelService from '../API/HotelService';
-import { Grid, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material';
+import React from 'react';
+import { IconButton } from '@mui/material';
 import Paper from '@mui/material/Paper';
-import { Icon } from 'leaflet';
 import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 
 const HotelDataComponent = ({hotelData, setHotelData }) => {
