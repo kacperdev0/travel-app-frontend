@@ -4,7 +4,7 @@ import HotelService from '../API/HotelService';
 import { Grid, Typography, List, ListItem, ListItemText } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import HotelDataComponent from './HotelDataComponent';
-import '../CSS/MapStyle.css'; 
+import styles from '../CSS/MapStyle.module.css';  // Import the CSS module
 
 const MapComponent = () => {
   const [hotels, setHotels] = useState([]);
@@ -27,22 +27,22 @@ const MapComponent = () => {
   }, []);
 
   return (
-    <Grid container className="container">
-      <Grid item xs={12} md={4} className="listContainer">
+    <Grid container className={styles.container}>
+      <Grid item xs={12} md={4} className={styles.listContainer}>
         {selectedHotel ? (
           <div style={{ padding: "2vh" }}>
             <HotelDataComponent hotelData={selectedHotel} setHotelData={setSelectedHotel} />
           </div>
         ) : (
-          <div>
-            <Typography padding="1vh" align='center' variant="h6" gutterBottom>
+          <div className={styles.fullWidth}>
+            <Typography padding="1vh" height="1vh" align='center' variant="h6" gutterBottom>
               Hotel List
             </Typography>
-            <div className="hotelList">
+            <div className={styles.hotelList}>
               <List>
                 {hotels.map((hotel, index) => (
                   <ListItem key={index}>
-                    <Paper elevation={3} className="paper" onClick={() => { setSelectedHotel(hotel) }}>
+                    <Paper elevation={3} className={styles.paper} onClick={() => { setSelectedHotel(hotel) }}>
                       <ListItemText
                         primary={hotel.tags.name}
                         secondary={hotel.tags["addr:street"]}
@@ -59,7 +59,7 @@ const MapComponent = () => {
         <MapContainer
           center={[52.2297, 21.0122]}
           zoom={13}
-          className="mapContainer"
+          className={styles.mapContainer}
         >
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

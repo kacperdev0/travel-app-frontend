@@ -1,0 +1,33 @@
+/* MapStyle.module.css */
+.container {
+  height: 93vh;
+}
+
+.listContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 3vh;
+  box-sizing: border-box;
+}
+
+.hotelList {
+  flex: 1;
+  overflow-y: auto;
+  max-height: calc(82vh);
+}
+
+.paper {
+  width: 94%;
+  padding: 3%;
+  cursor: pointer;
+}
+
+.mapContainer {
+  height: 100%;
+  width: 100%;
+}
+
+.fullWidth {
+  width: 100%;
+}
+
