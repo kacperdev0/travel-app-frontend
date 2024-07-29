@@ -5,6 +5,7 @@ import { Grid, Typography, List, ListItem, ListItemText } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import HotelDataComponent from './HotelDataComponent';
 import styles from '../CSS/MapStyle.module.css';  // Import the CSS module
+import SearchBarComponent from './SearchBarComponent';
 
 const MapComponent = () => {
   const [hotels, setHotels] = useState([]);
@@ -56,6 +57,7 @@ const MapComponent = () => {
         )}
       </Grid>
       <Grid item xs={12} md={8} style={{ height: '100%' }}>
+        <SearchBarComponent/>
         <MapContainer
           center={[52.2297, 21.0122]}
           zoom={13}

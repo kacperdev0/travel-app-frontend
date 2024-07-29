@@ -25,9 +25,19 @@
 .mapContainer {
   height: 100%;
   width: 100%;
+  position: relative;
 }
 
 .fullWidth {
   width: 100%;
 }
 
+.searchBar {
+  position: absolute;
+  top: 8.5%;
+  left: 44%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  max-width: 600px;
+  background-color: white;
+}
