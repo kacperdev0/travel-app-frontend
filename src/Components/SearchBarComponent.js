@@ -6,7 +6,7 @@ import Paper from '@mui/material/Paper';
 import HotelDataComponent from './HotelDataComponent';
 import styles from '../CSS/MapStyle.module.css';
 
-const SearchBarComponent = () => {
+const SearchBarComponent = ({setLocation}) => {
   const [suggestions, setSuggestions] = useState(["Test1","Test2","Test3"]);
 
   return (

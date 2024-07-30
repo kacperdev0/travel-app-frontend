@@ -1,15 +1,22 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import HotelService from '../API/HotelService';
-import { Grid, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { Grid, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import HotelDataComponent from './HotelDataComponent';
 import styles from '../CSS/MapStyle.module.css';  // Import the CSS module
 import SearchBarComponent from './SearchBarComponent';
 
+const SetMapCenter = ({ center }) => {
+  const map = useMap()
+  map.setView(center)
+  return null
+}
+
 const MapComponent = () => {
   const [hotels, setHotels] = useState([]);
   const [selectedHotel, setSelectedHotel] = useState(null);
+  const [location, setLocation] = useState([52.2297, 21.0122]);
 
   useEffect(() => {
     const params = {
@@ -26,6 +33,27 @@ const MapComponent = () => {
         console.error('Error fetching hotels:', error);
       });
   }, []);
+  
+  const updateHotels = () => {
+    const params = {
+      latitude: location[0],
+      longitude: location[1]
+    };
+
+    HotelService.getHotels(params)
+    .then(res => {
+      setHotels(res.data.elements);
+      console.log(res.data.elements);
+    })
+    .catch(error => {
+      console.error('Error fetching hotels:', error);
+    });
+  }
+
+  const handleLocationChange = (data) => {
+    setLocation(data)
+    updateHotels()
+  }
 
   return (
     <Grid container className={styles.container}>
@@ -56,13 +84,15 @@ const MapComponent = () => {
           </div>
         )}
       </Grid>
+      
       <Grid item xs={12} md={8} style={{ height: '100%' }}>
-        <SearchBarComponent/>
+        <SearchBarComponent setLocation={handleLocationChange}/>
         <MapContainer
-          center={[52.2297, 21.0122]}
+          center={location}
           zoom={13}
           className={styles.mapContainer}
         >
+          <SetMapCenter center={location} />
           <TileLayer
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
