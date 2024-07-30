@@ -1,9 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
-import HotelService from '../API/HotelService';
-import { Grid, Typography, List, ListItem, ListItemText, Autocomplete, TextField } from '@mui/material';
-import Paper from '@mui/material/Paper';
-import HotelDataComponent from './HotelDataComponent';
+import React, { useState } from 'react';
+import { Autocomplete, TextField, IconButton } from '@mui/material';
 import styles from '../CSS/MapStyle.module.css';
 
 const SearchBarComponent = ({setLocation}) => {

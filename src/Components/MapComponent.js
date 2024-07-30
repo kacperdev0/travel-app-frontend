@@ -19,20 +19,8 @@ const MapComponent = () => {
   const [location, setLocation] = useState([52.2297, 21.0122]);
 
   useEffect(() => {
-    const params = {
-      latitude: "52.229675",
-      longitude: "21.012230"
-    };
-
-    HotelService.getHotels(params)
-      .then(res => {
-        setHotels(res.data.elements);
-        console.log(res.data.elements);
-      })
-      .catch(error => {
-        console.error('Error fetching hotels:', error);
-      });
-  }, []);
+    updateHotels()
+  }, [location]);
   
   const updateHotels = () => {
     const params = {
@@ -52,7 +40,6 @@ const MapComponent = () => {
 
   const handleLocationChange = (data) => {
     setLocation(data)
-    updateHotels()
   }
 
   return (
@@ -67,6 +54,7 @@ const MapComponent = () => {
             <Typography padding="1vh" height="1vh" align='center' variant="h6" gutterBottom>
               Hotel List
             </Typography>
+            <IconButton onClick={() => {handleLocationChange([53.13333, 23.16433])}}>Change Location</IconButton>
             <div className={styles.hotelList}>
               <List>
                 {hotels.map((hotel, index) => (
