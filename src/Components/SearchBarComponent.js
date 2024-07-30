@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { Autocomplete, TextField, IconButton } from '@mui/material';
-import styles from '../CSS/MapStyle.module.css';
+import { TextField, Paper, List, ListItem, ListItemText } from '@mui/material';
 import axios from 'axios';
+import styles from '../CSS/MapStyle.module.css';
 
-const SearchBarComponent = ({setMainLocation}) => {
-  const [suggestions, setSuggestions] = useState(["Test1","Test2","Test3"]);
-  const [location, setLocation] = useState("")
+const SearchBarComponent = ({ setMainLocation }) => {
+  const [suggestions, setSuggestions] = useState([]);
+  const [location, setLocation] = useState('');
 
   const handleInputChange = async (event) => {
     const value = event.target.value;
@@ -23,16 +23,31 @@ const SearchBarComponent = ({setMainLocation}) => {
     }
   };
 
+  const handleSuggestionClick = (suggestion) => {
+    setLocation(suggestion.display_name);
+    setSuggestions([]);
+  };
+
   return (
     <div className={styles.searchBar}>
-        <TextField 
-          label="Location"
-          variant='outlined'
-          fullWidth
-          value={location}
-          onChange={handleInputChange}
-          />
-         
+      <TextField
+        label="Location"
+        variant="outlined"
+        fullWidth
+        value={location}
+        onChange={handleInputChange}
+      />
+      {location && suggestions.length > 0 && (
+        <Paper className={styles.suggestions}>
+          <List>
+            {suggestions.map((item, index) => (
+              <ListItem key={index} button onClick={() => handleSuggestionClick(item)}>
+                <ListItemText primary={item.display_name} />
+              </ListItem>
+            ))}
+          </List>
+        </Paper>
+      )}
     </div>
   );
 };
