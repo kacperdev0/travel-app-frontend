@@ -4,28 +4,30 @@ import axios from 'axios';
 import styles from '../CSS/MapStyle.module.css';
 
 const SearchBarComponent = ({ setMainLocation }) => {
-  const [suggestions, setSuggestions] = useState([]);
-  const [location, setLocation] = useState('');
+  const [suggestions, setSuggestions] = useState([])
+  const [location, setLocation] = useState('')
 
   const handleInputChange = async (event) => {
-    const value = event.target.value;
-    setLocation(value);
+    const value = event.target.value
+    setLocation(value)
 
     if (value.length > 2) {
       try {
         const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${value}&addressdetails=1&limit=5`);
         setSuggestions(response.data);
+        console.log(response.data)
       } catch (error) {
         console.error('Error fetching data from Nominatim API:', error);
       }
     } else {
-      setSuggestions([]);
+      setSuggestions([])
     }
   };
 
   const handleSuggestionClick = (suggestion) => {
-    setLocation(suggestion.display_name);
-    setSuggestions([]);
+    setMainLocation([suggestion.lat, suggestion.lon])
+    setLocation(suggestion.display_name)
+    setSuggestions([])
   };
 
   return (

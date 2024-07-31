@@ -23,12 +23,12 @@ const MapComponent = () => {
   }, [location]);
   
   const updateHotels = () => {
-    const params = {
+    const data = {
       latitude: location[0],
       longitude: location[1]
     };
 
-    HotelService.getHotels(params)
+    HotelService.getHotels(data)
     .then(res => {
       setHotels(res.data.elements);
       console.log(res.data.elements);
@@ -38,23 +38,19 @@ const MapComponent = () => {
     });
   }
 
-  const handleLocationChange = (data) => {
-    setLocation(data)
-  }
-
   return (
     <Grid container className={styles.container}>
       <Grid item xs={12} md={4} className={styles.listContainer}>
         {selectedHotel ? (
           <div style={{ padding: "2vh" }}>
-            <HotelDataComponent hotelData={selectedHotel} setHotelData={setSelectedHotel} />
+            <HotelDataComponent hotelData={selectedHotel} />
           </div>
         ) : (
           <div className={styles.fullWidth}>
             <Typography padding="1vh" height="1vh" align='center' variant="h6" gutterBottom>
               Hotel List
             </Typography>
-            <IconButton onClick={() => {handleLocationChange([53.13333, 23.16433])}}>Change Location</IconButton>
+            <IconButton onClick={() => {setLocation([53.13333, 23.16433])}}>Change Location</IconButton>
             <div className={styles.hotelList}>
               <List>
                 {hotels.map((hotel, index) => (
@@ -74,7 +70,7 @@ const MapComponent = () => {
       </Grid>
       
       <Grid item xs={12} md={8} style={{ height: '100%' }}>
-        <SearchBarComponent setLocation={handleLocationChange}/>
+        <SearchBarComponent setMainLocation={setLocation}/>
         <MapContainer
           center={location}
           zoom={13}
