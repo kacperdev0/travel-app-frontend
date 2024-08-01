@@ -13,7 +13,7 @@ const SearchBarComponent = ({ setMainLocation }) => {
 
     if (value.length > 2) {
       try {
-        const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${value}&addressdetails=1&limit=5`);
+        const response = await axios.get(`https://nominatim.openstreetmap.org/search?format=json&q=${value}&addressdetails=1&limit=3`);
         setSuggestions(response.data);
         console.log(response.data)
       } catch (error) {
