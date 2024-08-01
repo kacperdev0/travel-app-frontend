@@ -50,7 +50,6 @@ const MapComponent = () => {
             <Typography padding="1vh" height="1vh" align='center' variant="h6" gutterBottom>
               Hotel List
             </Typography>
-            <IconButton onClick={() => {setLocation([53.13333, 23.16433])}}>Change Location</IconButton>
             <div className={styles.hotelList}>
               <List>
                 {hotels.map((hotel, index) => (
@@ -82,14 +81,15 @@ const MapComponent = () => {
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
           {hotels.map((hotel, index) => (
-            <Marker key={index} position={[hotel.lat, hotel.lon]}>
-              <Popup>
-                <div>
-                  <Typography variant="h6">{hotel.tags.name}</Typography>
-                  <Typography variant="body2">{hotel.tags.description}</Typography>
-                </div>
-              </Popup>
-            </Marker>
+            <Marker 
+              key={index}
+              position={ [hotel.lat, hotel.lon] } 
+              eventHandlers={{
+                click: () => {
+                  setSelectedHotel(hotel)
+                }
+              }}
+            />
           ))}
         </MapContainer>
       </Grid>
