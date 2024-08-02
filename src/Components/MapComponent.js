@@ -42,8 +42,8 @@ const MapComponent = () => {
     <Grid container className={styles.container}>
       <Grid item xs={12} md={4} className={styles.listContainer}>
         {selectedHotel ? (
-          <div style={{ padding: "2vh" }}>
-            <HotelDataComponent hotelData={selectedHotel} />
+          <div style={{ padding: "2vh", width: "100%"}}>
+            <HotelDataComponent hotelData={selectedHotel} setHotelData={setSelectedHotel}/>
           </div>
         ) : (
           <div className={styles.fullWidth}>
