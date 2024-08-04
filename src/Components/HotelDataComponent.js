@@ -9,7 +9,7 @@ const HotelDataComponent = ({ hotelData, setHotelData }) => {
 
   const formatKey = (key) => {
     return key
-      .split(':').pop() // Take the part after the colon if it exists
+      .split(':').pop() // Take after the colon if it exists
       .replace(/_/g, ' ') // Replace underscores with spaces
       .replace(/^\w/, (c) => c.toUpperCase()); // Capitalize the first letter
   };
@@ -46,7 +46,7 @@ const HotelDataComponent = ({ hotelData, setHotelData }) => {
   };
 
   return (
-    <Paper elevation={3} style={{ padding: "2vh", width: "100%" }}>
+    <Paper elevation={3} style={{ padding: "2vh", width: "90%" }}>
       <IconButton onClick={returnToList}>
         <KeyboardReturnIcon />
       </IconButton>

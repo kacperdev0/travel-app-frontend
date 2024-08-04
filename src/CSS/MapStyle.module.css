@@ -11,9 +11,8 @@
 }
 
 .hotelList {
-  flex: 1;
+  max-height: calc(100vh - 200px); /* Adjust this value as needed */
   overflow-y: auto;
-  max-height: calc(82vh);
 }
 
 .paper {

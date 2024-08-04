@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import HotelService from '../API/HotelService';
-import { Grid, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material';
+import { Grid, Typography, List, ListItem, ListItemText } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import HotelDataComponent from './HotelDataComponent';
-import styles from '../CSS/MapStyle.module.css';  // Import the CSS module
+import styles from '../CSS/MapStyle.module.css';
 import SearchBarComponent from './SearchBarComponent';
+import AirportService from '../API/AirportService';
+import SliderComponent from './SliderComponent';
 
 const SetMapCenter = ({ center }) => {
   const map = useMap()
@@ -14,9 +16,29 @@ const SetMapCenter = ({ center }) => {
 }
 
 const MapComponent = () => {
-  const [hotels, setHotels] = useState([]);
+  const [step, setStep] = useState(1);
+  const [hotel, setHotel] = useState(null);
+  const [firstAirport, setFirstAirport] = useState(null);
+  const [secondAirport, setSecondAirport] = useState(null);
+
+  const [points, setPoints] = useState([]);
   const [selectedHotel, setSelectedHotel] = useState(null);
-  const [location, setLocation] = useState([52.2297, 21.0122]);
+  const [location, setLocation] = useState([52.52000660, 13.40495400]);
+
+  useEffect(() => {
+    const data = {
+      latitude: location[0],
+      longitude: location[1]
+    };
+
+    AirportService.getAirports(data)
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(error => {
+      console.error('Error fetching airports:', error);
+    });
+  }, [])
 
   useEffect(() => {
     updateHotels()
@@ -30,7 +52,7 @@ const MapComponent = () => {
 
     HotelService.getHotels(data)
     .then(res => {
-      setHotels(res.data.elements);
+      setPoints(res.data.elements);
       console.log(res.data.elements);
     })
     .catch(error => {
@@ -52,7 +74,7 @@ const MapComponent = () => {
             </Typography>
             <div className={styles.hotelList}>
               <List>
-                {hotels.map((hotel, index) => (
+                {points.map((hotel, index) => (
                   <ListItem key={index}>
                     <Paper elevation={3} className={styles.paper} onClick={() => { setSelectedHotel(hotel) }}>
                       <ListItemText
@@ -80,7 +102,7 @@ const MapComponent = () => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          {hotels.map((hotel, index) => (
+          {points.map((hotel, index) => (
             <Marker 
               key={index}
               position={ [hotel.lat, hotel.lon] } 
