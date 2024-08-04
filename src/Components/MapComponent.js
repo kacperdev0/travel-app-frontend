@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
 import HotelService from '../API/HotelService';
-import { Grid, Typography, List, ListItem, ListItemText } from '@mui/material';
+import { Grid, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import HotelDataComponent from './HotelDataComponent';
 import styles from '../CSS/MapStyle.module.css';
@@ -22,7 +22,7 @@ const MapComponent = () => {
   const [secondAirport, setSecondAirport] = useState(null);
 
   const [points, setPoints] = useState([]);
-  const [selectedHotel, setSelectedHotel] = useState(null);
+  const [selectedElement, setSelectedElement] = useState(null);
   const [location, setLocation] = useState([52.52000660, 13.40495400]);
 
   useEffect(() => {
@@ -60,26 +60,35 @@ const MapComponent = () => {
     });
   }
 
+  const handleSelect = () => {
+    if (step === 1) {
+      setHotel(selectedElement)
+    }
+  }
+
   return (
     <Grid container className={styles.container}>
       <Grid item xs={12} md={4} className={styles.listContainer}>
-        {selectedHotel ? (
+        {selectedElement ? (
           <div style={{ padding: "2vh", width: "100%"}}>
-            <HotelDataComponent hotelData={selectedHotel} setHotelData={setSelectedHotel}/>
+            <HotelDataComponent hotelData={selectedElement} setHotelData={setSelectedElement}/>
+            <IconButton onClick={handleSelect}></IconButton>
           </div>
         ) : (
           <div className={styles.fullWidth}>
             <Typography padding="1vh" height="1vh" align='center' variant="h6" gutterBottom>
-              Hotel List
+              {step === 1 && "Select Hotel"}
+              {step === 2 && "Select Start Airport"}
+              {step === 3 && "Select End Airport"}
             </Typography>
             <div className={styles.hotelList}>
               <List>
-                {points.map((hotel, index) => (
+                {points.map((element, index) => (
                   <ListItem key={index}>
-                    <Paper elevation={3} className={styles.paper} onClick={() => { setSelectedHotel(hotel) }}>
+                    <Paper elevation={3} className={styles.paper} onClick={() => { setSelectedElement(element) }}>
                       <ListItemText
-                        primary={hotel.tags.name}
-                        secondary={hotel.tags["addr:street"]}
+                        primary={element.tags.name}
+                        secondary={element.tags["addr:street"]}
                       />
                     </Paper>
                   </ListItem>
@@ -108,7 +117,7 @@ const MapComponent = () => {
               position={ [hotel.lat, hotel.lon] } 
               eventHandlers={{
                 click: () => {
-                  setSelectedHotel(hotel)
+                  setSelectedElement(hotel)
                 }
               }}
             />
