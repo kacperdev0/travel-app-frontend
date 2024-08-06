@@ -52,13 +52,13 @@ const MapComponent = ({ location, points, setFinal }) => {
             url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
           />
-          {points.map((hotel, index) => (
+          {points.map((element, index) => (
             <Marker
               key={index}
-              position={[hotel.lat, hotel.lon]}
+              position={[element.lat, element.lon]}
               eventHandlers={{
                 click: () => {
-                  setSelectedElement(hotel);
+                  setSelectedElement(element);
                 },
               }}
             />

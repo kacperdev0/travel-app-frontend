@@ -14,20 +14,9 @@ const PlannerComponent = () => {
     updateHotels(location);
   }, [location]);
 
-  const updateHotels = (location) => {
-    const data = {
-      latitude: location[0],
-      longitude: location[1],
-    };
-
-    HotelService.getHotels(data)
-      .then((res) => {
-        setPoints(res.data.elements || []);
-        console.log(res.data.elements);
-      })
-      .catch((error) => {
-        console.error('Error fetching hotels:', error);
-      });
+  const updateHotels = async (location) => {
+    const hotels = await HotelService.getHotels(location)
+    setPoints(hotels)
   };
 
   return (
