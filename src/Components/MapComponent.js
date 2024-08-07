@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
-import { Grid, Typography, List, ListItem, ListItemText, IconButton } from '@mui/material';
+import { Grid, Typography, List, ListItem, ListItemText, IconButton, Button } from '@mui/material';
 import Paper from '@mui/material/Paper';
 import HotelDataComponent from './HotelDataComponent';
 import styles from '../CSS/MapStyle.module.css';
@@ -20,7 +20,7 @@ const MapComponent = ({ location, points, setFinal }) => {
         {selectedElement ? (
           <div style={{ padding: '2vh', width: '100%' }}>
             <HotelDataComponent hotelData={selectedElement} setHotelData={setSelectedElement} />
-            <IconButton onClick={() => setFinal(selectedElement)}></IconButton>
+            <Button variant='contained' style={{marginLeft: "40%", marginTop: "5%"}} onClick={() => setFinal(selectedElement)}>Select</Button>
           </div>
         ) : (
           <div className={styles.fullWidth}>
