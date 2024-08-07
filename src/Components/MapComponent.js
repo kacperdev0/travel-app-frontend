@@ -4,6 +4,7 @@ import { Grid, Typography, List, ListItem, ListItemText, IconButton, Button } fr
 import Paper from '@mui/material/Paper';
 import HotelDataComponent from './HotelDataComponent';
 import styles from '../CSS/MapStyle.module.css';
+import PlannerIconsComponent from './PlannerIconsComponent;';
 
 const SetMapCenter = ({ center }) => {
   const map = useMap();
@@ -24,6 +25,7 @@ const MapComponent = ({ location, points, setFinal }) => {
           </div>
         ) : (
           <div className={styles.fullWidth}>
+            <PlannerIconsComponent />
             <Typography padding="1vh" height="1vh" align="center" variant="h6" gutterBottom>
               Select Hotel
             </Typography>
