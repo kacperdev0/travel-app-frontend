@@ -5,13 +5,13 @@
 
 .listContainer {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   padding: 3vh;
   box-sizing: border-box;
 }
 
 .hotelList {
-  max-height: calc(100vh - 200px); /* Adjust this value as needed */
+  max-height: calc(102vh - 200px); /* Adjust this value as needed */
   overflow-y: auto;
 }
 
