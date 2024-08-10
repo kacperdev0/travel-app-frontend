@@ -17,6 +17,27 @@ const PlannerComponent = () => {
   const [points, setPoints] = useState([]);
   const [location, setLocation] = useState([52.52000660, 13.40495400]);
 
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          setLocation([pos.coords.latitude, pos.coords.longitude]);
+          setLoading(false)
+        },
+        (err) => {
+          console.error("Error fetching location:", err);
+          setLoading(false)
+        }
+      );
+    } else {
+      console.error("Geolocation is not supported by this browser.");
+      setLoading(false)
+    }
+  }, []);
+
+
   useEffect(() => {
     updateHotels(location);
   }, [location]);
@@ -29,6 +50,10 @@ const PlannerComponent = () => {
     const hotels = await HotelService.getHotels(location)
     setPoints(hotels)
   };
+
+  if (loading) {
+    return;
+  }
 
   return (
     <Grid container className={styles.container}>
@@ -45,6 +70,7 @@ const PlannerComponent = () => {
       </Grid>
       
       <Grid item xs={12} md={8} style={{ height: '100%' }}>
+        <SearchBarComponent setMainLocation={setLocation}/>
         <MapComponent location={location} points={points} setSelectedElement={setSelectedElement}/>
       </Grid>
     </Grid>

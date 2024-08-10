@@ -13,10 +13,11 @@ class HotelService {
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
-            return (res.data.elements || [])
+            return res.data.elements || []
           })
         .catch((error) => {
             console.error('Error fetching hotels:', error);
+            return [];
         });
     }
 }

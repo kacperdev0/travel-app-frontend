@@ -22,13 +22,13 @@ const PlannerIconsComponent = ({hotel, chooseHotel, airportDeparture, chooseAirp
           </Paper>
         </Grid>
         <Grid textAlign="center" item xs={2.5}>
-          <Paper style={hotel ? blueBackground : {}} >
-          <IconButton variant="contained"><FlightTakeoffIcon style={hotel ? whiteIcon : {}}/></IconButton>
+          <Paper style={airportDeparture ? blueBackground : {}} >
+          <IconButton variant="contained"><FlightTakeoffIcon style={airportDeparture ? whiteIcon : {}}/></IconButton>
           </Paper>
         </Grid>
         <Grid textAlign="center" item xs={2.5}>
-            <Paper style={hotel ? blueBackground : {}} >
-                <IconButton><FlightLandIcon style={hotel ? whiteIcon : {}}/></IconButton>  
+            <Paper style={airportArrival ? blueBackground : {}} >
+                <IconButton><FlightLandIcon style={airportArrival ? whiteIcon : {}}/></IconButton>  
             </Paper>
         </Grid>
         <Grid textAlign="center" item xs={4.5}>
