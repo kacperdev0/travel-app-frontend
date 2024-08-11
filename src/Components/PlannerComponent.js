@@ -6,6 +6,7 @@ import SearchBarComponent from './SearchBarComponent';
 import MapComponent from './MapComponent';
 import ElementsListComponent from './ElementsListComponent';
 import PlannerIconsComponent from './PlannerIconsComponent;';
+import AirportService from '../API/AirportService';
 
 const PlannerComponent = () => {
   const [hotel, setHotel] = useState(null);
@@ -39,7 +40,9 @@ const PlannerComponent = () => {
 
 
   useEffect(() => {
-    updateHotels(location);
+    if (!loading) {
+      updateHotels(location);
+    }
   }, [location]);
 
   useEffect(() => {
@@ -50,6 +53,11 @@ const PlannerComponent = () => {
     const hotels = await HotelService.getHotels(location)
     setPoints(hotels)
   };
+
+  const updateAirports = async (location) => {
+    const airports = await AirportService.getAirports(location)
+    setPoints(airports)
+  }
 
   if (loading) {
     return;
