@@ -8,7 +8,7 @@ class AirportService {
             latitude: location[0],
             longitude: location[1],
           };
-          return axios.post(`${AIRPORT_API_URL}/searchHotels`, data, {
+          return axios.post(`${AIRPORT_API_URL}/searchAirports`, data, {
             headers: {
                 'Content-Type': 'application/json'
             }
@@ -16,7 +16,7 @@ class AirportService {
             return res.data.elements || []
           })
         .catch((error) => {
-            console.error('Error fetching hotels:', error);
+            console.error('Error fetching airports:', error);
             return [];
         })
     }

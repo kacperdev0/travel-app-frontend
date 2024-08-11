@@ -38,16 +38,22 @@ const PlannerComponent = () => {
     }
   }, []);
 
-
   useEffect(() => {
-    if (!loading) {
-      updateHotels(location);
+    if (loading) {
+      return
     }
-  }, [location]);
-
-  useEffect(() => {
-    console.log(hotel)
-  }, [hotel]);
+    switch (step) {
+      case 1:
+        updateHotels(location)
+        break
+      case 2:
+        updateAirports(location)
+        break
+      case 3:
+        updateAirports(location)
+        break
+    }
+  }, [step, location])
 
   const updateHotels = async (location) => {
     const hotels = await HotelService.getHotels(location)
@@ -56,7 +62,22 @@ const PlannerComponent = () => {
 
   const updateAirports = async (location) => {
     const airports = await AirportService.getAirports(location)
+    console.log(airports)
     setPoints(airports)
+  }
+
+  const setFinal = (element) => {
+    switch (step) {
+      case 1:
+        setHotel(element)
+        break
+      case 2:
+        setAirportDeparture(element)
+        break
+      case 3:
+        setAirportArrival(element)
+        break
+    }
   }
 
   if (loading) {
@@ -67,10 +88,14 @@ const PlannerComponent = () => {
     <Grid container className={styles.container}>
       <Grid item xs={12} md={4} className={styles.listContainer}>
         <Box width="100%" display="flex" flexDirection="column" gap={2}>
-          <PlannerIconsComponent hotel={hotel} />
+          <PlannerIconsComponent 
+            hotel={hotel} chooseHotel={() => {setStep(1)}}
+            airportDeparture={airportDeparture} chooseAirportDeparture={() => {setStep(2)}}
+            airportArrival={airportArrival}  chooseAirportArrival={() => {setStep(3)}}
+          />
           <ElementsListComponent 
             points={points} 
-            setFinal={setHotel} 
+            setFinal={setFinal} 
             selectedElement={selectedElement} 
             setSelectedElement={setSelectedElement} 
           />
