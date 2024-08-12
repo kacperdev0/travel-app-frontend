@@ -17,6 +17,7 @@ const PlannerComponent = () => {
   const [selectedElement, setSelectedElement] = useState(null);
   const [points, setPoints] = useState([]);
   const [location, setLocation] = useState([52.52000660, 13.40495400]);
+  const [zoom, setZoom] = useState(10)
 
   const [loading, setLoading] = useState(true)
 
@@ -44,12 +45,15 @@ const PlannerComponent = () => {
     }
     switch (step) {
       case 1:
+        setZoom(10)
         updateHotels(location)
         break
       case 2:
+        setZoom(8)
         updateAirports(location)
         break
       case 3:
+        setZoom(8)
         updateAirports(location)
         break
     }
@@ -104,7 +108,7 @@ const PlannerComponent = () => {
       
       <Grid item xs={12} md={8} style={{ height: '100%' }}>
         <SearchBarComponent setMainLocation={setLocation}/>
-        <MapComponent location={location} points={points} setSelectedElement={setSelectedElement}/>
+        <MapComponent location={location} points={points} setSelectedElement={setSelectedElement} zoom={zoom} />
       </Grid>
     </Grid>
   );
