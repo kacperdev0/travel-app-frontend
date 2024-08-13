@@ -4,12 +4,13 @@ import { Link } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import ProfileComponent from './ProfileComponent';
 
 const NavigationBarComponent = () => {
   return (
     <AppBar position='static' style={{height: "10hv"}}>
       <Toolbar>
-          <IconButton color="inherit"><AccountCircleIcon/></IconButton>
+          <IconButton color="inherit" component={Link} to="/profile"><AccountCircleIcon/></IconButton>
           <Button color="inherit" component={Link} to="/">Home</Button>
       </Toolbar>
     </AppBar>

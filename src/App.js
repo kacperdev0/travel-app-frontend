@@ -5,6 +5,7 @@ import LoginComponent from './Components/LoginComponent';
 import HomeComponent from './Components/HomeComponent';
 import NavigationBarComponent from './Components/NavigationBarComponent';
 import RegisterComponent from './Components/RegisterComponent';
+import ProfileComponent from './Components/ProfileComponent';
 
 const App = () => {
   return (
@@ -13,6 +14,7 @@ const App = () => {
         <NavigationBarComponent />
         <Routes style={{height: "95hv"}}>
           <Route exact path="/" element={<HomeComponent/>} />
+          <Route path="/profile" element={<ProfileComponent/>} />
           <Route path="/register" element={<RegisterComponent />} />
           <Route path="/login" element={<LoginComponent />} />
         </Routes>

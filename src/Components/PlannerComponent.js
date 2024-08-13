@@ -47,14 +47,17 @@ const PlannerComponent = () => {
       case 1:
         setZoom(10)
         updateHotels(location)
+        setSelectedElement(null)
         break
       case 2:
         setZoom(8)
         updateAirports(location)
+        setSelectedElement(null)
         break
       case 3:
         setZoom(8)
         updateAirports(location)
+        setSelectedElement(null)
         break
     }
   }, [step, location])
