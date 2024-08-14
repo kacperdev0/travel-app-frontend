@@ -12,100 +12,114 @@ const PlannerComponent = () => {
   const [hotel, setHotel] = useState(null);
   const [airportDeparture, setAirportDeparture] = useState(null);
   const [airportArrival, setAirportArrival] = useState(null);
-  const [step, setStep] = useState(1)
-
+  const [step, setStep] = useState(1);
   const [selectedElement, setSelectedElement] = useState(null);
   const [points, setPoints] = useState([]);
   const [location, setLocation] = useState([52.52000660, 13.40495400]);
-  const [zoom, setZoom] = useState(10)
-
-  const [loading, setLoading] = useState(true)
+  const [zoom, setZoom] = useState(10);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
           setLocation([pos.coords.latitude, pos.coords.longitude]);
-          setLoading(false)
+          setLoading(false);
         },
         (err) => {
           console.error("Error fetching location:", err);
-          setLoading(false)
+          setLoading(false);
         }
       );
     } else {
       console.error("Geolocation is not supported by this browser.");
-      setLoading(false)
+      setLoading(false);
     }
   }, []);
 
   useEffect(() => {
-    if (loading) {
-      return
-    }
-    switch (step) {
-      case 1:
-        setZoom(10)
-        updateHotels(location)
-        setSelectedElement(null)
-        break
-      case 2:
-        setZoom(8)
-        updateAirports(location)
-        setSelectedElement(null)
-        break
-      case 3:
-        setZoom(8)
-        updateAirports(location)
-        setSelectedElement(null)
-        break
-    }
-  }, [step, location])
+    if (loading) return;
+
+    const fetchData = async () => {
+      setLoading(true);
+      try {
+        switch (step) {
+          case 1:
+            setZoom(10);
+            await updateHotels(location);
+            break;
+          case 2:
+            setZoom(8);
+            await updateAirports(location);
+            break;
+          case 3:
+            setZoom(8);
+            await updateAirports(location);
+            break;
+          default:
+            break;
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [step, location]);
 
   const updateHotels = async (location) => {
-    const hotels = await HotelService.getHotels(location)
-    setPoints(hotels)
+    try {
+      const hotels = await HotelService.getHotels(location);
+      setPoints(hotels);
+    } catch (error) {
+      console.error("Error fetching hotels:", error);
+    }
   };
 
   const updateAirports = async (location) => {
-    const airports = await AirportService.getAirports(location)
-    console.log(airports)
-    setPoints(airports)
-  }
+    try {
+      const airports = await AirportService.getAirports(location);
+      console.log(airports);
+      setPoints(airports);
+    } catch (error) {
+      console.error("Error fetching airports:", error);
+    }
+  };
 
   const setFinal = (element) => {
     switch (step) {
       case 1:
-        setHotel(element)
-        break
+        setHotel(element);
+        break;
       case 2:
-        setAirportDeparture(element)
-        break
+        setAirportDeparture(element);
+        break;
       case 3:
-        setAirportArrival(element)
-        break
+        setAirportArrival(element);
+        break;
+      default:
+        break;
     }
-  }
-
-  if (loading) {
-    return;
-  }
+  };
 
   return (
     <Grid container className={styles.container}>
       <Grid item xs={12} md={4} className={styles.listContainer}>
         <Box width="100%" display="flex" flexDirection="column" gap={2}>
           <PlannerIconsComponent 
-            hotel={hotel} chooseHotel={() => {setStep(1)}}
-            airportDeparture={airportDeparture} chooseAirportDeparture={() => {setStep(2)}}
-            airportArrival={airportArrival}  chooseAirportArrival={() => {setStep(3)}}
+            hotel={hotel} chooseHotel={() => setStep(1)}
+            airportDeparture={airportDeparture} chooseAirportDeparture={() => setStep(2)}
+            airportArrival={airportArrival} chooseAirportArrival={() => setStep(3)}
           />
+          {loading == false && 
           <ElementsListComponent 
             points={points} 
             setFinal={setFinal} 
             selectedElement={selectedElement} 
             setSelectedElement={setSelectedElement} 
-          />
+          /> }
         </Box>
       </Grid>
       
