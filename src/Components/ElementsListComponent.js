@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
-import HotelService from '../API/HotelService';
+import React from 'react';
 import styles from '../CSS/MapStyle.module.css';
-import { Grid, Typography, List, ListItem, ListItemText, Paper, Button } from '@mui/material';
+import { ListItem, List, ListItemText, Paper, Button } from '@mui/material';
 import HotelDataComponent from './HotelDataComponent';
 
 const ElementListComponent = ({points, setFinal, selectedElement, setSelectedElement}) => {

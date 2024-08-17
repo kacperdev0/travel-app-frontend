@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { Button, Grid, IconButton, Paper, Typography } from '@mui/material';
+import React from 'react';
+import { Button, Grid, IconButton, Paper } from '@mui/material';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlightLandIcon from '@mui/icons-material/FlightLand';
 import KingBedIcon from '@mui/icons-material/KingBed';
@@ -31,7 +31,10 @@ const PlannerIconsComponent = ({hotel, chooseHotel, airportDeparture, chooseAirp
                 <IconButton><FlightLandIcon style={airportArrival ? whiteIcon : {}}/></IconButton>  
             </Paper>
         </Grid>
-        <Grid textAlign="center" item xs={4.5}>
+        <Grid textAlign="center" item xs={2}>
+          <Button variant="contained">LOAD</Button>
+        </Grid>
+        <Grid textAlign="center" item xs={2}>
           <Button variant="contained">SAVE</Button>
         </Grid>
       </Grid>
