@@ -4,7 +4,7 @@ import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlightLandIcon from '@mui/icons-material/FlightLand';
 import KingBedIcon from '@mui/icons-material/KingBed';
 
-const PlannerIconsComponent = ({hotel, chooseHotel, airportDeparture, chooseAirportDeparture, airportArrival, chooseAirportArrival}) => {
+const PlannerIconsComponent = ({hotel, chooseHotel, airportDeparture, chooseAirportDeparture, airportArrival, chooseAirportArrival, save}) => {
   const blueBackground = {
     backgroundColor: "#1976d2",
   }
@@ -34,7 +34,7 @@ const PlannerIconsComponent = ({hotel, chooseHotel, airportDeparture, chooseAirp
         <Grid textAlign="center" item xs={2.4}>
           <Button variant="contained">LOAD</Button>
         </Grid>
-        <Grid textAlign="center" item xs={2.4}>
+        <Grid textAlign="center" item xs={2.4} onClick={save}>
           <Button variant="contained">SAVE</Button>
         </Grid>
       </Grid>

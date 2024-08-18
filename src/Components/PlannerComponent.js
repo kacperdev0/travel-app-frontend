@@ -23,7 +23,7 @@ const PlannerComponent = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-
+     
   PlanService.getPlans()
     .then((res) => {
       console.log(res);
@@ -119,6 +119,25 @@ PlanService.getPlans().then((res) => {
     }
   };
 
+  const savePlan = () => {
+      PlanService.savePlan(
+      {
+        "hotel": hotel.id,
+        "airportArrival": airportArrival.id,
+        "airportDeparture": airportDeparture.id
+      }
+    )
+     .catch(error => {
+       if (error.response) {
+        console.log("401")  
+         if (error.response.status === 401) {
+            console.log("blad 401")
+             navigate("/login", {state: { message: "Your session expired"}})
+         }
+     }
+     });
+  }
+
   return (
     <Grid container className={styles.container}>
       <Grid item xs={12} md={4} className={styles.listContainer}>
@@ -127,6 +146,7 @@ PlanService.getPlans().then((res) => {
             hotel={hotel} chooseHotel={() => setStep(1)}
             airportDeparture={airportDeparture} chooseAirportDeparture={() => setStep(2)}
             airportArrival={airportArrival} chooseAirportArrival={() => setStep(3)}
+            save={savePlan}
           />
           {loading == false && 
           <ElementsListComponent 
