@@ -7,6 +7,8 @@ import MapComponent from './MapComponent';
 import ElementsListComponent from './ElementsListComponent';
 import PlannerIconsComponent from './PlannerIconsComponent;';
 import AirportService from '../API/AirportService';
+import PlanService from '../API/PlanService';
+import { useNavigate } from 'react-router-dom';
 
 const PlannerComponent = () => {
   const [hotel, setHotel] = useState(null);
@@ -18,8 +20,26 @@ const PlannerComponent = () => {
   const [location, setLocation] = useState([52.52000660, 13.40495400]);
   const [zoom, setZoom] = useState(10);
   const [loading, setLoading] = useState(true);
+  const navigate = useNavigate()
 
   useEffect(() => {
+    PlanService.savePlan(
+      {
+        "hotel": "Hotel",
+        "airportArrival": "Airport",
+        "airportDeparture": "Airport"
+      }
+    )
+     .catch(error => {
+       if (error.response) {
+        console.log("401")  
+         if (error.response.status === 401) {
+            console.log("blad 401")
+             navigate("/login", {state: { message: "Your session expired"}})
+         }
+     }
+     });
+
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
@@ -103,6 +123,16 @@ const PlannerComponent = () => {
         break;
     }
   };
+
+  const savePlan = () => {
+    PlanService.savePlan({
+      "hotel": "Grand Plaza Hotel",
+      "airportArrival": "JFK International Airport",
+      "airportDeparture": "LAX International Airport"
+  }).then((res) => {
+      console.log(res.data)
+    })
+  }
 
   return (
     <Grid container className={styles.container}>
