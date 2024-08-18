@@ -23,22 +23,17 @@ const PlannerComponent = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    PlanService.savePlan(
-      {
-        "hotel": "Hotel",
-        "airportArrival": "Airport",
-        "airportDeparture": "Airport"
-      }
-    )
-     .catch(error => {
-       if (error.response) {
-        console.log("401")  
-         if (error.response.status === 401) {
-            console.log("blad 401")
-             navigate("/login", {state: { message: "Your session expired"}})
-         }
-     }
-     });
+
+  PlanService.getPlans()
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((error) => {
+      console.error("Error fetching plans:", error);
+    });
+PlanService.getPlans().then((res) => {
+      console.log(res.data)
+     })
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
@@ -123,16 +118,6 @@ const PlannerComponent = () => {
         break;
     }
   };
-
-  const savePlan = () => {
-    PlanService.savePlan({
-      "hotel": "Grand Plaza Hotel",
-      "airportArrival": "JFK International Airport",
-      "airportDeparture": "LAX International Airport"
-  }).then((res) => {
-      console.log(res.data)
-    })
-  }
 
   return (
     <Grid container className={styles.container}>

@@ -18,6 +18,20 @@ class PlanService {
             return [];
         });
     }
+    getPlans() {
+        return axios.post(`${PLAN_API_URL}/getPlans`, {}, {
+            withCredentials: true,
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((res) => {
+            return res.data || []
+          })
+        .catch((error) => {
+            console.error('Error fetching plans:', error);
+            return [];
+        });
+    }
 }
 
 export default new PlanService();
