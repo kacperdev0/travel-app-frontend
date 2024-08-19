@@ -25,7 +25,7 @@ class PlanService {
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
-            return res.data || []
+            return res || []
           })
         .catch((error) => {
             console.error('Error fetching plans:', error);
