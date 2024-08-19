@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Box } from '@mui/material';
+import { Grid, Box, Paper, Typography } from '@mui/material';
 import HotelService from '../API/HotelService';
 import styles from '../CSS/MapStyle.module.css';
 import SearchBarComponent from './SearchBarComponent';
@@ -136,6 +136,10 @@ PlanService.getPlans().then((res) => {
          }
      }
      });
+  }
+
+  const loadPlan = () => {
+
   }
 
   return (

@@ -19,6 +19,8 @@ class UserService {
             withCredentials: true
         })
     }
+
+    
 }
 
 export default new UserService();
