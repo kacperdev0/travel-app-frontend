@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import UserService from '../API/UserService';
 import PlanService from '../API/PlanService';
 import { useNavigate } from 'react-router-dom';
+import PlanComponent from './PlanComponent';
 
 const ProfileComponent = () => {
   const [user, setUser] = useState(null);
@@ -52,21 +53,7 @@ const ProfileComponent = () => {
               <Typography variant="h6" gutterBottom>
                 Saved plans
               </Typography>
-              <List>
-                {plans.length > 0 ? (
-                  plans.map((plan, index) => (
-                    <ListItem key={index}>
-                      <Typography variant="body1">
-                        {plan.id }. {plan.hotel}
-                      </Typography>
-                    </ListItem>
-                  ))
-                ) : (
-                  <Typography variant="body1" color="textSecondary">
-                    No plans available.
-                  </Typography>
-                )}
-              </List>
+              <PlanComponent plans={plans} />
             </Box>
           </Paper>
         </Box>
