@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import UserService from "../API/UserService";
 import { Container, TextField, Button, Typography, Box, CssBaseline } from '@mui/material';
 import { useLocation } from "react-router-dom"
@@ -6,7 +6,13 @@ import ErrorMessageComponent from "./ErrorMessageComponent";
 
 const LoginComponent = () => {
   const location = useLocation()
-  const message = location.state?.message
+  const [message, setMessage] = useState(null)
+
+  useEffect(()=>{
+    if (location.state) {
+      setMessage(location.state.message)
+    }
+  },[])
 
   const [loginData, setLoginData] = useState({
     login: "",
@@ -33,6 +39,9 @@ const LoginComponent = () => {
       console.log(response.data)
      })
      .catch(error => {
+      if (error.response.status == 401) {
+        setMessage(error.response.data)
+      }
       console.error('Error: ', error)
      });
   }
