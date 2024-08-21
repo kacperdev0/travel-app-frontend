@@ -61,14 +61,17 @@ PlanService.getPlans().then((res) => {
       try {
         switch (step) {
           case 1:
+            setSelectedElement(null)
             setZoom(10);
             await updateHotels(location);
             break;
           case 2:
+            setSelectedElement(null)
             setZoom(8);
             await updateAirports(location);
             break;
           case 3:
+            setSelectedElement(null)
             setZoom(8);
             await updateAirports(location);
             break;
