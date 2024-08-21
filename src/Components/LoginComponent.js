@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../API/UserService";
 import { Container, TextField, Button, Typography, Box, CssBaseline } from '@mui/material';
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import ErrorMessageComponent from "./ErrorMessageComponent";
 
 const LoginComponent = () => {
   const location = useLocation()
+  const navigate = useNavigate()
+  const redirect = location.state?.redirect || "/"
   const [message, setMessage] = useState(null)
 
   useEffect(()=>{
@@ -36,6 +38,7 @@ const LoginComponent = () => {
 
     console.log(loginData)
     UserService.loginUser(loginData).then(response => {
+      navigate(redirect)
       console.log(response.data)
      })
      .catch(error => {

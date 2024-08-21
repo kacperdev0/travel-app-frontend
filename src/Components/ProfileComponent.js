@@ -21,7 +21,7 @@ const ProfileComponent = () => {
         setPlans(plansRes.data);
       } catch (error) {
         if (error.response && error.response.status === 401) {
-          navigate('/login', { state: { message: 'Your session expired' } });
+          navigate('/login', { state: { message: 'Your session expired', redirect: "/profile" } });
         } else {
           console.error("An error occurred:", error);
         }
