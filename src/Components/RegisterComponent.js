@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import UserService from "../API/UserService";
 import { Container, TextField, Button, Typography, Box, CssBaseline } from '@mui/material';
+import { useNavigate } from "react-router-dom";
 
 const RegisterComponent = () => {
+  const navigate = useNavigate()
+
   const [registerData, setRegisterData] = useState({
     login: "",
     password: "",
@@ -32,6 +35,7 @@ const RegisterComponent = () => {
     UserService.saveUser(registerData)
       .then(res => {
         console.log('Registration successful:', res);
+        navigate("/login")
       })
       .catch(error => {
         console.error('Registration error:', error.response.data);

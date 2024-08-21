@@ -61,6 +61,7 @@ PlanService.getPlans().then((res) => {
       try {
         switch (step) {
           case 1:
+            
             setSelectedElement(null)
             setZoom(10);
             await updateHotels(location);

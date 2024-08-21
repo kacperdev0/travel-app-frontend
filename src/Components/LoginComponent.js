@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import UserService from "../API/UserService";
-import { Container, TextField, Button, Typography, Box, CssBaseline } from '@mui/material';
+import { Container, TextField, Button, Typography, Box, CssBaseline, Grid } from '@mui/material';
 import { useLocation, useNavigate } from "react-router-dom"
 import ErrorMessageComponent from "./ErrorMessageComponent";
 
@@ -91,14 +91,31 @@ const LoginComponent = () => {
             onChange={handlePasswordChange}
             value={loginData.password}
           />
-          <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2 }}
-          >
-            Login
-          </Button>
+        <Grid container spacing={2}>
+          <Grid item xs={6}>
+            <Button
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+              onClick={() => {
+                navigate("/register")
+              }}
+            >
+              Register
+            </Button>
+          </Grid>
+          <Grid item xs={6}>
+            <Button
+              type="submit"
+              fullWidth
+              variant="contained"
+              sx={{ mt: 3, mb: 2 }}
+            >
+              Login
+            </Button>
+          </Grid>
+        </Grid>
+          
         </Box>
       </Box>
     </Container>
