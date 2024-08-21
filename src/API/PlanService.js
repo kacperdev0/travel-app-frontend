@@ -13,10 +13,6 @@ class PlanService {
         }).then((res) => {
             return res.data.elements || []
           })
-        .catch((error) => {
-            console.error('Error saving plans:', error);
-            return [];
-        });
     }
     getPlans() {
         return axios.post(`${PLAN_API_URL}/getPlans`, {}, {

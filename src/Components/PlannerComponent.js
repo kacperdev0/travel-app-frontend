@@ -8,6 +8,7 @@ import ElementsListComponent from './ElementsListComponent';
 import PlannerIconsComponent from './PlannerIconsComponent;';
 import AirportService from '../API/AirportService';
 import PlanService from '../API/PlanService';
+import { handleLoginError} from '../Objects/HandleLogin'
 import { useNavigate } from 'react-router-dom';
 
 const PlannerComponent = () => {
@@ -128,13 +129,7 @@ PlanService.getPlans().then((res) => {
       }
     )
      .catch(error => {
-       if (error.response) {
-        console.log("401")  
-         if (error.response.status === 401) {
-            console.log("blad 401")
-             navigate("/login", {state: { message: "Your session expired"}})
-         }
-     }
+      handleLoginError(navigate, error);
      });
   }
 

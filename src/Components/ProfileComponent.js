@@ -4,6 +4,7 @@ import UserService from '../API/UserService';
 import PlanService from '../API/PlanService';
 import { useNavigate } from 'react-router-dom';
 import PlanComponent from './PlanComponent';
+import { handleLoginError } from '../Objects/HandleLogin';
 
 const ProfileComponent = () => {
   const [user, setUser] = useState(null);
@@ -20,11 +21,7 @@ const ProfileComponent = () => {
         const plansRes = await PlanService.getPlans();
         setPlans(plansRes.data);
       } catch (error) {
-        if (error.response && error.response.status === 401) {
-          navigate('/login', { state: { message: 'Your session expired', redirect: "/profile" } });
-        } else {
-          console.error("An error occurred:", error);
-        }
+        handleLoginError(navigate, error, "/profile")
       }
     };
 
