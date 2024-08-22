@@ -9,7 +9,7 @@ import PlannerIconsComponent from './PlannerIconsComponent;';
 import AirportService from '../API/AirportService';
 import PlanService from '../API/PlanService';
 import { handleLoginError} from '../Objects/HandleLogin'
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const PlannerComponent = () => {
   const [hotel, setHotel] = useState(null);
@@ -18,13 +18,18 @@ const PlannerComponent = () => {
   const [step, setStep] = useState(1);
   const [selectedElement, setSelectedElement] = useState(null);
   const [points, setPoints] = useState([]);
-  const [location, setLocation] = useState([52.52000660, 13.40495400]);
+  const [mapCentre, setMapCentre] = useState([52.52000660, 13.40495400]);
   const [zoom, setZoom] = useState(10);
   const [loading, setLoading] = useState(true);
+
   const navigate = useNavigate()
+  const location = useLocation()
 
   useEffect(() => {
-     
+    if (location.state) {
+      console.log("PLAN: ", location.state.data)
+    } 
+
   PlanService.getPlans()
     .then((res) => {
       console.log(res);
@@ -39,7 +44,7 @@ PlanService.getPlans().then((res) => {
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
-          setLocation([pos.coords.latitude, pos.coords.longitude]);
+          setMapCentre([pos.coords.latitude, pos.coords.longitude]);
           setLoading(false);
         },
         (err) => {
@@ -64,17 +69,17 @@ PlanService.getPlans().then((res) => {
             
             setSelectedElement(null)
             setZoom(10);
-            await updateHotels(location);
+            await updateHotels(mapCentre);
             break;
           case 2:
             setSelectedElement(null)
             setZoom(8);
-            await updateAirports(location);
+            await updateAirports(mapCentre);
             break;
           case 3:
             setSelectedElement(null)
             setZoom(8);
-            await updateAirports(location);
+            await updateAirports(mapCentre);
             break;
           default:
             break;
@@ -87,7 +92,7 @@ PlanService.getPlans().then((res) => {
     };
 
     fetchData();
-  }, [step, location]);
+  }, [step, mapCentre]);
 
   const updateHotels = async (location) => {
     try {
@@ -162,8 +167,8 @@ PlanService.getPlans().then((res) => {
       </Grid>
       
       <Grid item xs={12} md={8} style={{ height: '100%' }}>
-        <SearchBarComponent setMainLocation={setLocation}/>
-        <MapComponent location={location} points={points} setSelectedElement={setSelectedElement} zoom={zoom} />
+        <SearchBarComponent setMainLocation={setMapCentre}/>
+        <MapComponent location={mapCentre} points={points} setSelectedElement={setSelectedElement} zoom={zoom} />
       </Grid>
     </Grid>
   );

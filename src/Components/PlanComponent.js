@@ -1,8 +1,11 @@
 import React from 'react';
 import { Paper, Typography, IconButton, Box } from '@mui/material';
 import { Save as SaveIcon } from '@mui/icons-material';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const PlanCard = ({ plan }) => {
+  const navigate = useNavigate()
+
   return (
     <Paper 
       elevation={3}
@@ -16,6 +19,9 @@ const PlanCard = ({ plan }) => {
       }}
       onMouseEnter={(e) => e.currentTarget.style.transform = 'scale(1.02)'}
       onMouseLeave={(e) => e.currentTarget.style.transform = 'scale(1)'}
+      onClick={() => {
+        navigate("/", {state: {data: plan}})
+      }}
     >
       <Typography variant="h6" gutterBottom>
         Plan ID: {plan.id}
@@ -33,9 +39,6 @@ const PlanCard = ({ plan }) => {
         }}
         className="save-icon"
       >
-        <IconButton>
-          <SaveIcon />
-        </IconButton>
       </Box>
     </Paper>
   );
