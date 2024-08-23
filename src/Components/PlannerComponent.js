@@ -10,6 +10,7 @@ import AirportService from '../API/AirportService';
 import PlanService from '../API/PlanService';
 import { handleLoginError} from '../Objects/HandleLogin'
 import { useLocation, useNavigate } from 'react-router-dom';
+import { getPlaceById } from '../Objects/GetPlaceById';
 
 const PlannerComponent = () => {
   const [hotel, setHotel] = useState(null);
@@ -27,7 +28,10 @@ const PlannerComponent = () => {
 
   useEffect(() => {
     if (location.state) {
-      console.log("PLAN: ", location.state.data)
+      const plan = location.state.data
+      setHotel(plan.hotel)
+      setAirportArrival(plan.airportArrival)
+      setAirportDeparture(plan.airportDeparture)
     } 
 
   PlanService.getPlans()
