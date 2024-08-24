@@ -3,8 +3,11 @@ import { Button, Grid, IconButton, Paper } from '@mui/material';
 import FlightTakeoffIcon from '@mui/icons-material/FlightTakeoff';
 import FlightLandIcon from '@mui/icons-material/FlightLand';
 import KingBedIcon from '@mui/icons-material/KingBed';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 const PlannerIconsComponent = ({hotel, chooseHotel, airportDeparture, chooseAirportDeparture, airportArrival, chooseAirportArrival, save}) => {
+  const navigate = useNavigate()
+
   const blueBackground = {
     backgroundColor: "#1976d2",
   }
@@ -32,7 +35,10 @@ const PlannerIconsComponent = ({hotel, chooseHotel, airportDeparture, chooseAirp
             </Paper>
         </Grid>
         <Grid textAlign="center" item xs={2.4}>
-          <Button variant="contained">LOAD</Button>
+          <Button variant="contained"
+          onClick={() => {
+            navigate("/profile")
+          }}>LOAD</Button>
         </Grid>
         <Grid textAlign="center" item xs={2.4} onClick={save}>
           <Button variant="contained">SAVE</Button>
