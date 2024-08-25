@@ -12,6 +12,7 @@ import { handleLoginError} from '../Objects/HandleLogin'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getPlaceById } from '../Objects/GetPlaceById';
 import CircularProgress from '@mui/material/CircularProgress';
+import LoadingComponent from './LoadingComponent';
 
 const PlannerComponent = () => {
   const [hotel, setHotel] = useState(null);
@@ -163,9 +164,7 @@ PlanService.getPlans().then((res) => {
             save={savePlan}
           />
           {loading ? ( 
-              <div style={{ width: "100%", height: "80%", textAlign: "center", marginTop: "20%"}}>
-                <CircularProgress />
-              </div>
+              <LoadingComponent />
             ) : (
           <ElementsListComponent 
             points={points} 
