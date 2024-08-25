@@ -11,6 +11,7 @@ import PlanService from '../API/PlanService';
 import { handleLoginError} from '../Objects/HandleLogin'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getPlaceById } from '../Objects/GetPlaceById';
+import CircularProgress from '@mui/material/CircularProgress';
 
 const PlannerComponent = () => {
   const [hotel, setHotel] = useState(null);
@@ -32,6 +33,7 @@ const PlannerComponent = () => {
       setHotel(plan.hotel)
       setAirportArrival(plan.airportArrival)
       setAirportDeparture(plan.airportDeparture)
+      console.log(hotel)
     } 
 
   PlanService.getPlans()
@@ -160,13 +162,18 @@ PlanService.getPlans().then((res) => {
             airportArrival={airportArrival} chooseAirportArrival={() => setStep(3)}
             save={savePlan}
           />
-          {loading == false && 
+          {loading ? ( 
+              <div style={{ width: "100%", height: "80%", textAlign: "center", marginTop: "20%"}}>
+                <CircularProgress />
+              </div>
+            ) : (
           <ElementsListComponent 
             points={points} 
             setFinal={setFinal} 
             selectedElement={selectedElement} 
             setSelectedElement={setSelectedElement} 
-          /> }
+          /> 
+          )}
         </Box>
       </Grid>
       
