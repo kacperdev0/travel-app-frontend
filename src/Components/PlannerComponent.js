@@ -30,9 +30,9 @@ const PlannerComponent = () => {
   useEffect(() => {
     if (location.state) {
       const plan = location.state.data;
-      setHotel((plan.hotel));
-      setAirportArrival((plan.airportArrival));
-      setAirportDeparture((plan.airportDeparture));
+      setHotel(getPlaceById(plan.hotel));
+      setAirportArrival(getPlaceById(plan.airportArrival));
+      setAirportDeparture(getPlaceById(plan.airportDeparture));
       console.log(hotel);
     }
   
