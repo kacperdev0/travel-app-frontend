@@ -11,7 +11,6 @@ import PlanService from '../API/PlanService';
 import { handleLoginError} from '../Objects/HandleLogin'
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getPlaceById } from '../Objects/GetPlaceById';
-import CircularProgress from '@mui/material/CircularProgress';
 import LoadingComponent from './LoadingComponent';
 
 const PlannerComponent = () => {
@@ -30,24 +29,24 @@ const PlannerComponent = () => {
 
   useEffect(() => {
     if (location.state) {
-      const plan = location.state.data
-      setHotel(plan.hotel)
-      setAirportArrival(plan.airportArrival)
-      setAirportDeparture(plan.airportDeparture)
-      console.log(hotel)
-    } 
-
-  PlanService.getPlans()
-    .then((res) => {
-      console.log(res);
-    })
-    .catch((error) => {
-      console.error("Error fetching plans:", error);
+      const plan = location.state.data;
+      setHotel((plan.hotel));
+      setAirportArrival((plan.airportArrival));
+      setAirportDeparture((plan.airportDeparture));
+      console.log(hotel);
+    }
+  
+    PlanService.getPlans()
+      .then((res) => {
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error("Error fetching plans:", error);
+      });
+    PlanService.getPlans().then((res) => {
+      console.log(res.data);
     });
-PlanService.getPlans().then((res) => {
-      console.log(res.data)
-     })
-
+  
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(
         (pos) => {
@@ -64,6 +63,7 @@ PlanService.getPlans().then((res) => {
       setLoading(false);
     }
   }, []);
+  
 
   useEffect(() => {
     if (loading) return;
