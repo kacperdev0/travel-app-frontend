@@ -6,15 +6,18 @@ import { handleLoginError } from '../Objects/HandleLogin';
 import { Save } from '@mui/icons-material';
 
 const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId }) => {
-  const [plans, setPlans] = useState([]);
+  const maxSlots = 10;
+
+  const [slots, setSlots] = useState([]);
   const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const plansRes = await PlanService.getPlans();
-        if (plans.data) {
-          setPlans(plansRes.data)
+        if (plansRes.data) {
+          setSlots([...plansRes.data, ...Array(maxSlots).fill(null)].slice(0, maxSlots));
+          console.log(slots)
         }
         
       } catch (error) {
@@ -23,10 +26,7 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
     };
 
     fetchData();
-  }, [navigate]);
-
-  const maxSlots = 10;
-  const slots = [...plans, ...Array(maxSlots).fill(null)].slice(0, maxSlots);
+  }, []);
 
   
   const savePlan = () => {
@@ -62,7 +62,10 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
                 }}
               >
                 {plan ? (
-                  <Typography variant="h6">{`Plan ${plan.id}`}</Typography>
+                  <div>
+                    <Typography variant="h8">{`Plan ${plan.hotel}`}</Typography><br></br>
+                    <Typography variant="h10">{`Date: ${plan.saveTime}`}</Typography>
+                  </div>
                 ) : (
                   <Typography 
                     variant="body1"
