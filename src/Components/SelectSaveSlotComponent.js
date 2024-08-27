@@ -12,7 +12,10 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
     const fetchData = async () => {
       try {
         const plansRes = await PlanService.getPlans();
-        setPlans(plansRes.data);
+        if (plans.data) {
+          setPlans(plansRes.data)
+        }
+        
       } catch (error) {
         handleLoginError(navigate, error, "/");
       }
@@ -21,7 +24,6 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
     fetchData();
   }, [navigate]);
 
-  // Create an array of up to 10 items with a mix of plans and empty slots
   const maxSlots = 10;
   const slots = [...plans, ...Array(maxSlots).fill(null)].slice(0, maxSlots);
 
@@ -37,13 +39,13 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
               <Paper
                 elevation={3}
                 style={{
-                  height: 100, // Adjust height as needed
+                  height: 100,
                   display: 'flex',
                   alignItems: 'center',
                   justifyContent: 'center',
                   textAlign: 'center',
                   padding: 16,
-                  backgroundColor: plan ? 'lightblue' : 'lightgray', // Differentiates empty slots
+                  backgroundColor: plan ? 'lightblue' : 'lightgray', 
                 }}
               >
                 {plan ? (

@@ -48,9 +48,10 @@ const ProfileComponent = () => {
             </Box>
             <Box mt={4}>
               <Typography variant="h6" gutterBottom>
-                Saved plans
+                {plans ? "Saved plans" : "You haven't saved any plan yet" }
               </Typography>
-              <PlanComponent plans={plans} />
+              {plans && <PlanComponent plans={plans} />}
+              
             </Box>
           </Paper>
         </Box>
