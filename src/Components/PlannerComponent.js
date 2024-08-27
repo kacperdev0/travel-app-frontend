@@ -17,16 +17,6 @@ const PlannerComponent = () => {
 
   const savePlan = () => {
     setSaving(true)
-    //   PlanService.savePlan(
-    //   {
-    //     "hotel": hotel.id,
-    //     "airportArrival": airportArrival.id,
-    //     "airportDeparture": airportDeparture.id
-    //   }
-    // )
-    //  .catch(error => {
-    //   handleLoginError(navigate, error);
-    //  });
   }
 
 
@@ -34,7 +24,7 @@ const PlannerComponent = () => {
   return (
     <Grid container className={styles.container}>
       {saving ? (
-        <SelectSaveSlotComponent hotelId={hotel.id} airportDepartureId={airportDeparture.id} airportArrivalId={airportArrival.id} />
+        <SelectSaveSlotComponent hotelId={hotel.id} airportDepartureId={airportDeparture.id} airportArrivalId={airportArrival.id}/>
       ) : (
         <PlanEditorComponent hotel={hotel} setHotel={setHotel}
          airportDeparture={airportDeparture} setAirportDeparture={setAirportDeparture}

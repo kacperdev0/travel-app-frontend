@@ -3,6 +3,7 @@ import { Grid, Paper, Typography, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import PlanService from '../API/PlanService';
 import { handleLoginError } from '../Objects/HandleLogin';
+import { Save } from '@mui/icons-material';
 
 const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId }) => {
   const [plans, setPlans] = useState([]);
@@ -26,6 +27,18 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
 
   const maxSlots = 10;
   const slots = [...plans, ...Array(maxSlots).fill(null)].slice(0, maxSlots);
+
+  
+  const savePlan = () => {
+      PlanService.savePlan(
+      {
+        "hotel": hotelId,
+        "airportArrival": airportArrivalId,
+        "airportDeparture": airportDepartureId
+      }
+    )
+    navigate("/profile")
+  }
 
   return (
     <Grid width="80%" marginLeft="10%" marginTop="5%" align="center">
@@ -51,7 +64,11 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
                 {plan ? (
                   <Typography variant="h6">{`Plan ${plan.id}`}</Typography>
                 ) : (
-                  <Typography variant="body1">Empty Slot</Typography>
+                  <Typography 
+                    variant="body1"
+                    onClick={() => {savePlan()}}>
+                    Empty Slot
+                  </Typography>
                 )}
               </Paper>
             </Grid>
