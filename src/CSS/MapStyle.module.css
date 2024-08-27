@@ -1,6 +1,7 @@
 /* MapStyle.module.css */
 .container {
   height: 93vh;
+  width: 100%;
 }
 
 .listContainer {
