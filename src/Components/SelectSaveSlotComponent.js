@@ -40,6 +40,18 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
     navigate("/profile")
   }
 
+  const overwritePlan = (id) => {
+    PlanService.overwritePlan(
+      {
+        "id": id,
+        "hotel": hotelId,
+        "airportArrival": airportArrivalId,
+        "airportDeparture": airportDepartureId
+      }
+    )
+    navigate("/profile")
+  }
+
   return (
     <Grid width="80%" marginLeft="10%" marginTop="5%" align="center">
       <Typography variant="h6" gutterBottom align="center">

@@ -14,6 +14,16 @@ class PlanService {
             return res.data.elements || []
           })
     }
+    overwritePlan(data) {
+        return axios.post(`${PLAN_API_URL}/overwritePlan`, data, {
+            withCredentials: true, 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        }).then((res) => {
+            return res.data.elements || []
+          })
+    }
     getPlans() {
         return axios.post(`${PLAN_API_URL}/getPlans`, {}, {
             withCredentials: true,
