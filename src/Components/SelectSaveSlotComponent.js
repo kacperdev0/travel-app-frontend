@@ -74,7 +74,10 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
                 }}
               >
                 {plan ? (
-                  <div>
+                  <div
+                  onClick={() => {
+                    
+                  }}>
                     <Typography variant="h8">{`Plan ${plan.hotel}`}</Typography><br></br>
                     <Typography variant="h10">{`Date: ${plan.saveTime}`}</Typography>
                   </div>

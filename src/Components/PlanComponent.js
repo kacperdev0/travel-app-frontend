@@ -44,7 +44,7 @@ const PlanCard = ({ plan }) => {
   );
 }
 
-const PlanComponent = ({ plans }) => { 
+const PlanComponent = ({ plans })  => { 
   return (
     <Box display="flex" flexWrap="wrap">
       {plans.length > 0 ? (

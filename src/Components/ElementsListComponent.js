@@ -1,20 +1,19 @@
 import React from 'react';
 import styles from '../CSS/MapStyle.module.css';
-import { ListItem, List, ListItemText, Paper, Button } from '@mui/material';
+import { ListItem, List, ListItemText, Paper, Button, Grid } from '@mui/material';
 import HotelDataComponent from './HotelDataComponent';
 
 const ElementListComponent = ({points, setFinal, selectedElement, setSelectedElement}) => {
 
   return (
-    <div style={{width: "100%"}}>
+    <Grid height="80hv">
         {selectedElement ? (
           <div style={{ padding: '2vh', width: '100%' }}>
             <HotelDataComponent hotelData={selectedElement} setHotelData={setSelectedElement} />
             <Button variant='contained' style={{marginLeft: "40%", marginTop: "5%"}} onClick={() => setFinal(selectedElement)}>Select</Button>
           </div>
         ) : (
-          <div className={styles.fullWidth}>
-            <div className={styles.hotelList}>
+            <Grid maxHeight="calc(80vh)" overflow="auto">
               <List>
                 {points.map((element, index) => (
                   <ListItem key={index}>
@@ -27,10 +26,9 @@ const ElementListComponent = ({points, setFinal, selectedElement, setSelectedEle
                   </ListItem>
                 ))}
               </List>
-            </div>
-          </div>
+           </Grid>
         )}
-      </div>
+    </Grid>
   );
 };
 

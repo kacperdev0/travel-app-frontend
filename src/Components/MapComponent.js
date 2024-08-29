@@ -19,7 +19,7 @@ const FitMapToBounds = ({ center, points }) => {
 const MapComponent = ({ location, points, setSelectedElement, zoom }) => {
 
   return (
-      <MapContainer center={location} zoom={zoom} className={styles.mapContainer}>
+      <MapContainer center={location} zoom={zoom} style={{height: "90vh", position:"relative"}}>
             <FitMapToBounds center={location} points={points} />
             <TileLayer
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

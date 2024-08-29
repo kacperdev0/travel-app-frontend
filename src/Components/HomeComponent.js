@@ -7,9 +7,7 @@ const HomeComponent = () => {
   const [destination, setDestination] = useState();
 
   return (
-    <div>
-      <PlannerComponent/>
-    </div>
+    <PlannerComponent/>
   );
 };
 
