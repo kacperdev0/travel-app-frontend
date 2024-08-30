@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import { TextField, Paper, List, ListItem, ListItemText } from '@mui/material';
+import { TextField, Paper, List, ListItem, ListItemText, Box, Grid } from '@mui/material';
 import axios from 'axios';
 import styles from '../CSS/MapStyle.module.css';
+import zIndex from '@mui/material/styles/zIndex';
 
 const SearchBarComponent = ({ setMainLocation }) => {
   const [suggestions, setSuggestions] = useState([])
@@ -31,7 +32,13 @@ const SearchBarComponent = ({ setMainLocation }) => {
   };
 
   return (
-    <div className={styles.searchBar}>
+    <Grid
+    width="20%"
+    zIndex="1000"
+    marginLeft="10vh"
+    marginTop="2vh"
+    backgroundColor="white"
+    position="absolute">
       <TextField
         label="Location"
         variant="outlined"
@@ -50,7 +57,7 @@ const SearchBarComponent = ({ setMainLocation }) => {
           </List>
         </Paper>
       )}
-    </div>
+      </Grid>
   );
 };
 
