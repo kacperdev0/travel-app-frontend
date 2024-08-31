@@ -46,14 +46,14 @@ const HotelDataComponent = ({ hotelData, setHotelData }) => {
   };
 
   return (
-    <Paper elevation={3} style={{ padding: "2vh", width: "90%" }}>
+    <Paper elevation={3} height="50vh" align="left" marginBottom="2vh">
       <IconButton onClick={returnToList}>
         <KeyboardReturnIcon />
       </IconButton>
       <Typography variant="h4" gutterBottom>
         {hotelData.tags.name || 'Hotel Data'}
       </Typography>
-      <TableContainer component={Paper} style={{ maxHeight: '60vh', overflow: 'auto' }}>
+      <TableContainer component={Paper} style={{ maxHeight: '45vh', overflow: 'auto' }}>
         <Table stickyHeader>
           <TableBody>
             {renderTableRows(hotelData.tags)}

@@ -6,12 +6,12 @@ import HotelDataComponent from './HotelDataComponent';
 const ElementListComponent = ({points, setFinal, selectedElement, setSelectedElement}) => {
 
   return (
-    <Grid height="80hv">
+    <Grid height="80vh">
         {selectedElement ? (
-          <div style={{ padding: '2vh', width: '100%' }}>
+          <Grid height="65vh" padding="2.5vh" align="center">
             <HotelDataComponent hotelData={selectedElement} setHotelData={setSelectedElement} />
-            <Button variant='contained' style={{marginLeft: "40%", marginTop: "5%"}} onClick={() => setFinal(selectedElement)}>Select</Button>
-          </div>
+            <Button variant='contained' onClick={() => setFinal(selectedElement)}>Select</Button>
+          </Grid>
         ) : (
             <Grid maxHeight="calc(80vh)" overflow="auto">
               <List>
