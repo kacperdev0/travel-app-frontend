@@ -9,8 +9,13 @@ const ElementListComponent = ({points, setFinal, selectedElement, setSelectedEle
     <Grid height="80vh">
         {selectedElement ? (
           <Grid height="65vh" padding="2.5vh" align="center">
-            <HotelDataComponent hotelData={selectedElement} setHotelData={setSelectedElement} />
-            <Button variant='contained' onClick={() => setFinal(selectedElement)}>Select</Button>
+            <Grid>
+              <HotelDataComponent hotelData={selectedElement} setHotelData={setSelectedElement} />
+            </Grid>
+
+            <Grid marginTop="3vh">
+              <Button variant='contained' onClick={() => setFinal(selectedElement)}>Select</Button>
+            </Grid>
           </Grid>
         ) : (
             <Grid maxHeight="calc(80vh)" overflow="auto">

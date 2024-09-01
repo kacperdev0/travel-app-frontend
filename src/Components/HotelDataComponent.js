@@ -53,7 +53,7 @@ const HotelDataComponent = ({ hotelData, setHotelData }) => {
       <Typography variant="h4" gutterBottom>
         {hotelData.tags.name || 'Hotel Data'}
       </Typography>
-      <TableContainer component={Paper} style={{ maxHeight: '45vh', overflow: 'auto' }}>
+      <TableContainer component={Paper} style={{ maxHeight: '45vh', overflow: 'auto' }}> 
         <Table stickyHeader>
           <TableBody>
             {renderTableRows(hotelData.tags)}
