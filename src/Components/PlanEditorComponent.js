@@ -40,12 +40,14 @@ const PlanEditorComponent = ({
     const location = useLocation()
 
     useEffect(() => {
-        if (location.state) {
+        try {
             const plan = location.state.data;
-            setHotel(getPlaceById(plan.hotel));
-            setAirportArrival(getPlaceById(plan.airportArrival));
-            setAirportDeparture(getPlaceById(plan.airportDeparture));
-            console.log(hotel);
+            setHotel(plan.hotel);
+            setAirportArrival(plan.airportArrival);
+            setAirportDeparture(plan.airportDeparture);
+            console.log(plan);
+        } catch {
+            console.log("There is no data passed threw save")
         }
 
         PlanService
@@ -136,13 +138,13 @@ const PlanEditorComponent = ({
     const setFinal = (element) => {
         switch (step) {
             case 1:
-                setHotel(element);
+                setHotel(element.id);
                 break;
             case 2:
-                setAirportDeparture(element);
+                setAirportDeparture(element.id);
                 break;
             case 3:
-                setAirportArrival(element);
+                setAirportArrival(element.id);
                 break;
             default:
                 break;

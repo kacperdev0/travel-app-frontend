@@ -17,6 +17,7 @@ const PlannerComponent = () => {
 
   const savePlan = () => {
     setSaving(true)
+    console.log("HOTEL ", hotel)
   }
 
 
@@ -24,7 +25,11 @@ const PlannerComponent = () => {
   return (
     <Grid container className={styles.container}>
       {saving ? (
-        <SelectSaveSlotComponent hotelId={hotel.id} airportDepartureId={airportDeparture.id} airportArrivalId={airportArrival.id}/>
+        <SelectSaveSlotComponent 
+         hotelId={hotel}
+         airportDepartureId={airportDeparture}
+         airportArrivalId={airportArrival}
+        />
       ) : (
         <PlanEditorComponent hotel={hotel} setHotel={setHotel}
          airportDeparture={airportDeparture} setAirportDeparture={setAirportDeparture}

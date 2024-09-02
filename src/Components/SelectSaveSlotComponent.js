@@ -30,6 +30,7 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
 
   
   const savePlan = () => {
+      console.log("HOTEL IN SAVE SLOT", hotelId)
       PlanService.savePlan(
       {
         "hotel": hotelId,
@@ -84,7 +85,9 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
                 ) : (
                   <Typography 
                     variant="body1"
-                    onClick={() => {savePlan()}}>
+                    onClick={() => {
+                      savePlan()
+                      }}>
                     Empty Slot
                   </Typography>
                 )}
