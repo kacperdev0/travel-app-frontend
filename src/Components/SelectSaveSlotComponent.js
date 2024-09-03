@@ -42,6 +42,7 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
   }
 
   const overwritePlan = (id) => {
+    console.log("HOTEL IN OVERWRITE SLOT", id, hotelId)
     PlanService.overwritePlan(
       {
         "id": id,
@@ -77,7 +78,7 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
                 {plan ? (
                   <div
                   onClick={() => {
-                    
+                    overwritePlan(plan.id)
                   }}>
                     <Typography variant="h8">{`Plan ${plan.hotel}`}</Typography><br></br>
                     <Typography variant="h10">{`Date: ${plan.saveTime}`}</Typography>

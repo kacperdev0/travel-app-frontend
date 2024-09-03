@@ -17,7 +17,6 @@ const PlannerComponent = () => {
 
   const savePlan = () => {
     setSaving(true)
-    console.log("HOTEL ", hotel)
   }
 
 
