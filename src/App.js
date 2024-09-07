@@ -2,12 +2,11 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import LoginComponent from './Components/LoginComponent';
-import HomeComponent from './Components/HomeComponent';
 import NavigationBarComponent from './Components/NavigationBarComponent';
 import RegisterComponent from './Components/RegisterComponent';
-import ProfileComponent from './Components/ProfileComponent';
-import PlannerComponent from './Components/PlannerComponent';
-import ProfileSettingsComponent from './Components/ProfileSettingsComponent';
+import ProfileComponent from './Components/ProfilePage/ProfileComponent';
+import PlannerComponent from './Components/PlanPage/PlannerComponent';
+import ProfileSettingsComponent from './Components/ProfilePage/ProfileSettingsComponent';
 
 const App = () => {
   return (

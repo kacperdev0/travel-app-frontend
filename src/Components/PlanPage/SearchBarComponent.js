@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { TextField, Paper, List, ListItem, ListItemText, Box, Grid } from '@mui/material';
 import axios from 'axios';
-import styles from '../CSS/MapStyle.module.css';
-import zIndex from '@mui/material/styles/zIndex';
+import styles from '../../CSS/MapStyle.module.css';
 
 const SearchBarComponent = ({ setMainLocation }) => {
   const [suggestions, setSuggestions] = useState([])

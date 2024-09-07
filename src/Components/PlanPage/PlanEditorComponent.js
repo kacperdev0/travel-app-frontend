@@ -1,17 +1,17 @@
 import React, {useEffect, useState} from 'react';
 import {Grid, Box, Paper, Typography} from '@mui/material';
-import HotelService from '../API/HotelService';
-import styles from '../CSS/MapStyle.module.css';
+import HotelService from '../../API/HotelService';
+import styles from '../../CSS/MapStyle.module.css';
 import SearchBarComponent from './SearchBarComponent';
 import MapComponent from './MapComponent';
 import ElementsListComponent from './ElementsListComponent';
 import PlannerIconsComponent from './PlannerIconsComponent;';
-import AirportService from '../API/AirportService';
-import PlanService from '../API/PlanService';
-import {handleLoginError} from '../Objects/HandleLogin'
+import AirportService from '../../API/AirportService';
+import PlanService from '../../API/PlanService';
+import {handleLoginError} from '../../Objects/HandleLogin'
 import {useLocation, useNavigate} from 'react-router-dom';
-import {getPlaceById} from '../Objects/GetPlaceById';
-import LoadingComponent from './LoadingComponent';
+import {getPlaceById} from '../../Objects/GetPlaceById';
+import LoadingComponent from '../LoadingComponent';
 import SelectSaveSlotComponent from './SelectSaveSlotComponent';
 
 const PlanEditorComponent = ({

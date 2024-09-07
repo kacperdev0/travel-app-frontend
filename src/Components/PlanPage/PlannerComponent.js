@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Box, Paper, Typography } from '@mui/material';
-import styles from '../CSS/MapStyle.module.css';
-import PlanService from '../API/PlanService';
-import { handleLoginError} from '../Objects/HandleLogin'
+import styles from '../../CSS/MapStyle.module.css';
+import PlanService from '../../API/PlanService';
+import { handleLoginError} from '../../Objects/HandleLogin'
 import SelectSaveSlotComponent from './SelectSaveSlotComponent';
 import PlanEditorComponent from './PlanEditorComponent';
 import { useNavigate } from 'react-router-dom';

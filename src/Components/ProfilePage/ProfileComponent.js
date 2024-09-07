@@ -1,10 +1,10 @@
 import { Container, Typography, Paper, List, ListItem, Avatar, Box, IconButton } from '@mui/material';
 import React, { useEffect, useState } from 'react';
-import UserService from '../API/UserService';
-import PlanService from '../API/PlanService';
+import UserService from '../../API/UserService';
+import PlanService from '../../API/PlanService';
 import { Link, useNavigate } from 'react-router-dom';
-import PlanComponent from './PlanComponent';
-import { handleLoginError } from '../Objects/HandleLogin';
+import PlanComponent from '../PlanPage/PlanComponent';
+import { handleLoginError } from '../../Objects/HandleLogin';
 import SettingsIcon from '@mui/icons-material/Settings';
 
 const ProfileComponent = () => {

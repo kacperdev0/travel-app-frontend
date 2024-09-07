@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '../CSS/MapStyle.module.css';
+import styles from '../../CSS/MapStyle.module.css';
 import { ListItem, List, ListItemText, Paper, Button, Grid } from '@mui/material';
 import HotelDataComponent from './HotelDataComponent';
 

@@ -1,11 +1,7 @@
 import { Button, AppBar, Toolbar, IconButton } from '@mui/material';
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import Menu from '@mui/material/Menu';
-import MenuItem from '@mui/material/MenuItem';
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import ProfileComponent from './ProfileComponent';
-
 const NavigationBarComponent = () => {
   return (
     <AppBar position='static' style={{height: "10hv"}}>

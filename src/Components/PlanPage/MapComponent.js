@@ -1,6 +1,5 @@
 import React, {useEffect} from 'react';
 import { MapContainer, TileLayer, Marker, useMap } from 'react-leaflet';
-import styles from '../CSS/MapStyle.module.css';
 import { LatLngBounds } from 'leaflet';
 
 const FitMapToBounds = ({ center, points }) => {

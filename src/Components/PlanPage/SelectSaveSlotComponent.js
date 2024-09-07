@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Paper, Typography, Box } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import PlanService from '../API/PlanService';
-import { handleLoginError } from '../Objects/HandleLogin';
-import { Save } from '@mui/icons-material';
+import PlanService from '../../API/PlanService';
+import { handleLoginError } from '../../Objects/HandleLogin';
 
 const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId }) => {
   const maxSlots = 10;
@@ -31,7 +30,7 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
   
   const savePlan = () => {
       console.log("HOTEL IN SAVE SLOT", hotelId)
-      PlanService.savePlan(
+      PlanService.savePlan( 
       {
         "hotel": hotelId,
         "airportArrival": airportArrivalId,

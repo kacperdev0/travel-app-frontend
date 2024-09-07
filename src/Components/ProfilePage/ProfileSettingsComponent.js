@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { Grid, Paper, Typography, Box, Container } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import PlanService from '../API/PlanService';
-import { handleLoginError } from '../Objects/HandleLogin';
+import PlanService from '../../API/PlanService';
+import { handleLoginError } from '../../Objects/HandleLogin';
 import { Save } from '@mui/icons-material';
-import UserService from '../API/UserService';
+import UserService from '../../API/UserService';
 
 const ProfileSettingsComponent = () => {
 
