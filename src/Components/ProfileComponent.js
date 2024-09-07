@@ -1,10 +1,11 @@
-import { Container, Typography, Paper, List, ListItem, Avatar, Box } from '@mui/material';
+import { Container, Typography, Paper, List, ListItem, Avatar, Box, IconButton } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import UserService from '../API/UserService';
 import PlanService from '../API/PlanService';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import PlanComponent from './PlanComponent';
 import { handleLoginError } from '../Objects/HandleLogin';
+import SettingsIcon from '@mui/icons-material/Settings';
 
 const ProfileComponent = () => {
   const [user, setUser] = useState(null);
@@ -45,6 +46,7 @@ const ProfileComponent = () => {
               <Typography variant="subtitle1" color="textSecondary" gutterBottom>
                 {user.email}
               </Typography>
+              <IconButton component={Link} to="/profile/settings"><SettingsIcon/></IconButton>
             </Box>
             <Box mt={4}>
               <Typography variant="h6" gutterBottom>
