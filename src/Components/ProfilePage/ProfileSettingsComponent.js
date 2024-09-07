@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Paper, Typography, Box, Container } from '@mui/material';
+import { Grid, Paper, Typography, Box, Container, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import PlanService from '../../API/PlanService';
 import { handleLoginError } from '../../Objects/HandleLogin';
@@ -19,6 +19,12 @@ const ProfileSettingsComponent = () => {
     })
   }, [])
 
+  const handleAvatarUrl = (event) => {
+    const userCopy = user
+    user.avatarUrl = event.target.value
+    setUser(userCopy)
+  }
+
   return (
     <Container style={{ padding: '2vh' }}>
         {user ? ( 
@@ -27,6 +33,16 @@ const ProfileSettingsComponent = () => {
             <Typography variant='h4'>
                 You're logged as: {user.email}
             </Typography>
+            <Box mt={4}>
+              <TextField
+                fullWidth
+                value={user.avatarUrl}
+                onChange={handleAvatarUrl}
+                label="Avatar Url"
+                variant="outlined"
+                size="medium" 
+              />
+            </Box>
           </Paper>
         </Box>
         ) : (<></>)}
