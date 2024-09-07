@@ -7,17 +7,19 @@ import NavigationBarComponent from './Components/NavigationBarComponent';
 import RegisterComponent from './Components/RegisterComponent';
 import ProfileComponent from './Components/ProfileComponent';
 import PlannerComponent from './Components/PlannerComponent';
+import ProfileSettingsComponent from './Components/ProfileSettingsComponent';
 
 const App = () => {
   return (
     <Router>
-      <div style={{ height: "100hv"}}>
+      <div style={{ height: "100vh"}}>
         <NavigationBarComponent />
         <Routes style={{height: "90hv"}}>
           <Route exact path="/" element={<PlannerComponent/>} />
           <Route path="/profile" element={<ProfileComponent/>} />
           <Route path="/register" element={<RegisterComponent />} />
           <Route path="/login" element={<LoginComponent />} />
+          <Route path="/profile/settings" element={<ProfileSettingsComponent/>} />
         </Routes>
       </div>
     </Router>
