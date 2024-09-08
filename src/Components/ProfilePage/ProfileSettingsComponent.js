@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Grid, Paper, Typography, Box, Container, TextField } from '@mui/material';
+import { Button, Paper, Typography, Box, Container, TextField } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import PlanService from '../../API/PlanService';
 import { handleLoginError } from '../../Objects/HandleLogin';
@@ -9,20 +9,21 @@ import UserService from '../../API/UserService';
 const ProfileSettingsComponent = () => {
 
   const [user, setUser] = useState(null)
+  const [updatedUser, setUpdatedUser] = useState(null)
   const navigate = useNavigate()
 
   useEffect(() => {
     UserService.getUsers().then((res) =>{
         setUser(res.data)
+        setUpdatedUser(res.data)
     }).catch((error) => {
         handleLoginError(navigate, error, "/profile/settings")
     })
   }, [])
 
   const handleAvatarUrl = (event) => {
-    const userCopy = user
-    user.avatarUrl = event.target.value
-    setUser(userCopy)
+    const userCopy = {...updatedUser, avatarUrl: event.target.value}
+    setUpdatedUser(userCopy)
   }
 
   return (
@@ -36,12 +37,17 @@ const ProfileSettingsComponent = () => {
             <Box mt={4}>
               <TextField
                 fullWidth
-                value={user.avatarUrl}
+                value={updatedUser.avatarUrl}
                 onChange={handleAvatarUrl}
                 label="Avatar Url"
                 variant="outlined"
                 size="medium" 
               />
+            </Box>
+            <Box mt={4}>
+              {updatedUser != user && (
+                <Button>SAVE</Button>
+              )}
             </Box>
           </Paper>
         </Box>
