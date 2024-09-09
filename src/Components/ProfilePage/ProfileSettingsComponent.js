@@ -26,6 +26,12 @@ const ProfileSettingsComponent = () => {
     setUpdatedUser(userCopy)
   }
 
+  const updateUserData = () => {
+    if (user.avatarUrl !== updatedUser.avatarUrl) {
+      UserService.updateAvatarUrl(updatedUser.avatarUrl)
+    }
+  }
+
   return (
     <Container style={{ padding: '2vh' }}>
         {user ? ( 
@@ -46,7 +52,7 @@ const ProfileSettingsComponent = () => {
             </Box>
             <Box mt={4}>
               {updatedUser != user && (
-                <Button>SAVE</Button>
+                <Button onClick={() => {updateUserData()}}>SAVE</Button>
               )}
             </Box>
           </Paper>

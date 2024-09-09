@@ -19,8 +19,12 @@ class UserService {
             withCredentials: true
         })
     }
-
     
+    updateAvatarUrl(newUrl) {
+        return axios.post(`${USER_API_URL}/protected/avatarUrl`, newUrl, {
+            withCredentials: true
+        })
+    }
 }
 
 export default new UserService();
