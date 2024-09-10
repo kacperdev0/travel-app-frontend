@@ -21,12 +21,13 @@ const ProfileComponent = () => {
 
         const plansRes = await PlanService.getPlans();
         setPlans(plansRes.data);
+
       } catch (error) {
         handleLoginError(navigate, error, "/profile")
       }
     };
 
-    fetchData(); 
+    fetchData();
   }, [navigate]);
 
   return (
@@ -37,7 +38,7 @@ const ProfileComponent = () => {
             <Box display="flex" flexDirection="column" alignItems="center">
               <Avatar
                 alt={user.name}
-                src={user.avatar}
+                src={decodeURIComponent(user.avatarUrl)}
                 sx={{ width: 80, height: 80, mb: 2 }}
               />
               <Typography variant="h5" gutterBottom>
