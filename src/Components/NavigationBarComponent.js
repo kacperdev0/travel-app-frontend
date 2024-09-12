@@ -5,7 +5,7 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 const NavigationBarComponent = () => {
   return (
     <AppBar position='static' style={{height: "10hv"}}>
-      <Toolbar>
+      <Toolbar disableGutters>
           <IconButton color="inherit" component={Link} to="/profile"><AccountCircleIcon/></IconButton>
           <Button color="inherit" component={Link} to="/">Home</Button>
           <Button color="inherit" component={Link} to="/explore">Explore</Button>
