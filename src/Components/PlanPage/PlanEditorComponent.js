@@ -50,20 +50,6 @@ const PlanEditorComponent = ({
             console.log("There is no data passed threw save")
         }
 
-        PlanService
-            .getPlans()
-            .then((res) => {
-                console.log(res);
-            })
-            .catch((error) => {
-                console.error("Error fetching plans:", error);
-            });
-        PlanService
-            .getPlans()
-            .then((res) => {
-                console.log(res.data);
-            });
-
         if (navigator.geolocation) {
             navigator
                 .geolocation
