@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import UserService from '../../API/UserService';
 import PlanService from '../../API/PlanService';
 import { Link, useNavigate } from 'react-router-dom';
-import PlanComponent from '../PlanPage/PlanComponent';
+import PlanComponent from './PlanComponent';
 import { handleLoginError } from '../../Objects/HandleLogin';
 import SettingsIcon from '@mui/icons-material/Settings';
 

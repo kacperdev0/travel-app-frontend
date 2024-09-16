@@ -12,13 +12,15 @@ const ExplorePageComponent = () => {
     }
 
     fetch()
-
-    console.log(posts)
   }, [])
+
+  useEffect(() => {
+    console.log(posts)
+  }, [posts])
   
   return (
     <Container>
-      <Paper sx={{p: '6vh', mt: 4, justifyContent: "center", textAlign: "center" }} elevation="3">
+      <Paper sx={{p: '6vh', mt: 4, justifyContent: "center", textAlign: "center" }} elevation={3}>
         Explore page
       </Paper>
     </Container>

@@ -1,10 +1,16 @@
-import React from 'react';
-import { Paper, Typography, IconButton, Box } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Paper, Typography, Stack, Box, IconButton } from '@mui/material';
 import { Save as SaveIcon } from '@mui/icons-material';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import PublicIcon from '@mui/icons-material/Public';
+import PublicOffIcon from '@mui/icons-material/PublicOff';
 
 const PlanCard = ({ plan }) => {
   const navigate = useNavigate()
+
+  useEffect(() => {
+
+  })
 
   return (
     <Paper 
@@ -23,9 +29,18 @@ const PlanCard = ({ plan }) => {
         navigate("/", {state: {data: plan}})
       }}
     >
-      <Typography variant="h6" gutterBottom>
-        Plan ID: {plan.id}
-      </Typography>
+      <Stack direction="row">
+        <Typography variant="h6" gutterBottom>
+          Plan ID: {plan.id}
+        </Typography>
+        <IconButton>
+          { plan.public ? (
+            <PublicIcon/>
+          ) : (
+            <PublicOffIcon/>
+          )}
+        </IconButton>
+      </Stack>
       <Typography variant="body1">
         Hotel: {plan.hotel}
       </Typography>

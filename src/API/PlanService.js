@@ -26,8 +26,8 @@ class PlanService {
           })
     }
     
-    getPlans() {
-        return axios.post(`${PLAN_API_URL}/getPlans`, {}, {
+    async getPlans() {
+        return await axios.post(`${PLAN_API_URL}/getPlans`, {}, {
             withCredentials: true,
             headers: {
                 'Content-Type': 'application/json'
@@ -39,6 +39,15 @@ class PlanService {
             console.error('Error fetching plans:', error);
             return [];
         });
+    }
+
+    togglePlanPublicity(id) {
+        return axios.post(`${PLAN_API_URL}/togglePlanPublicity`, id, {
+            withCredentials: true, 
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
     }
 }
 
