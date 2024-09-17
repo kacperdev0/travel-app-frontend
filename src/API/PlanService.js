@@ -42,7 +42,7 @@ class PlanService {
     }
 
     togglePlanPublicity(id) {
-        return axios.post(`${PLAN_API_URL}/togglePlanPublicity`, id, {
+        return axios.post(`${PLAN_API_URL}/togglePublicity/${id}`, null, {
             withCredentials: true, 
             headers: {
                 'Content-Type': 'application/json'
