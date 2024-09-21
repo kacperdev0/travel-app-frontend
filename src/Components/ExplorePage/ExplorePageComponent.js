@@ -1,4 +1,4 @@
-import { Container, Paper } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import PostService from '../../API/PostService';
 import PostComponent from './PostComponent';
@@ -21,7 +21,10 @@ const ExplorePageComponent = () => {
   
   return (
     <Container>
-      <PostComponent/>
+      <Grid direction="column">
+        <PostComponent/>
+        <PostComponent/>
+      </Grid>
     </Container>
   );
 };
