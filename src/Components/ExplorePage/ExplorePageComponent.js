@@ -1,6 +1,7 @@
 import { Container, Paper } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import PostService from '../../API/PostService';
+import PostComponent from './PostComponent';
 
 const ExplorePageComponent = () => {
   const [posts, setPosts] = useState([])
@@ -20,9 +21,7 @@ const ExplorePageComponent = () => {
   
   return (
     <Container>
-      <Paper sx={{p: '6vh', mt: 4, justifyContent: "center", textAlign: "center" }} elevation={3}>
-        Explore page
-      </Paper>
+      <PostComponent/>
     </Container>
   );
 };
