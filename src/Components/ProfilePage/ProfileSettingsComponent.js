@@ -26,6 +26,11 @@ const ProfileSettingsComponent = () => {
     setUpdatedUser(userCopy)
   }
 
+  const handleUsername = (event) => {
+    const userCopy = {...updatedUser, username: event.target.value}
+    setUpdatedUser(userCopy)
+  }
+
   const updateUserData = () => {
     if (user.avatarUrl !== updatedUser.avatarUrl) {
       UserService.updateAvatarUrl(updatedUser.avatarUrl)
@@ -46,6 +51,16 @@ const ProfileSettingsComponent = () => {
                 value={updatedUser.avatarUrl}
                 onChange={handleAvatarUrl}
                 label="Avatar Url"
+                variant="outlined"
+                size="medium" 
+              />
+            </Box>
+            <Box mt={4}>
+              <TextField
+                fullWidth
+                value={updatedUser.username}
+                onChange={handleUsername}
+                label="Username"
                 variant="outlined"
                 size="medium" 
               />
