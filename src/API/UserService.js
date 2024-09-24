@@ -21,7 +21,13 @@ class UserService {
     }
     
     updateAvatarUrl(newUrl) {
-        return axios.post(`${USER_API_URL}/protected/avatarUrl`, newUrl, {
+        return axios.post(`${USER_API_URL}/protected/avatarUrl/${newUrl}`,{}, {
+            withCredentials: true
+        })
+    }
+
+    updateUsername(newUsername) {
+        return axios.post(`${USER_API_URL}/protected/username/${newUsername}`, {}, {
             withCredentials: true
         })
     }

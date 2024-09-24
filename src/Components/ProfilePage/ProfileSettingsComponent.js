@@ -32,9 +32,17 @@ const ProfileSettingsComponent = () => {
   }
 
   const updateUserData = () => {
-    if (user.avatarUrl !== updatedUser.avatarUrl) {
-      UserService.updateAvatarUrl(updatedUser.avatarUrl)
-    }
+      if (user.avatarUrl !== updatedUser.avatarUrl) {
+        UserService.updateAvatarUrl(updatedUser.avatarUrl).catch((err) => {
+          handleLoginError(navigate, err, "/profile/settings")
+        })
+      }
+  
+      if (user.username !== updatedUser.username) {
+        UserService.updateUsername(updatedUser.username).catch((err) => {
+          handleLoginError(navigate, err, "/profile/settings")
+        })
+      }
   }
 
   return (
