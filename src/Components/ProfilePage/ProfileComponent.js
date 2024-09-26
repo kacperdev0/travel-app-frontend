@@ -37,12 +37,12 @@ const ProfileComponent = () => {
           <Paper elevation={3} style={{ padding: '20px', width: '100%', maxWidth: '600px' }}>
             <Box display="flex" flexDirection="column" alignItems="center">
               <Avatar
-                alt={user.name}
+                alt={user.username}
                 src={decodeURIComponent(user.avatarUrl)}
                 sx={{ width: 80, height: 80, mb: 2 }}
               />
               <Typography variant="h5" gutterBottom>
-                {user.name}
+                {user.username}
               </Typography>
               <Typography variant="subtitle1" color="textSecondary" gutterBottom>
                 {user.email}
