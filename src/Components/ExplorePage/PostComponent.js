@@ -1,12 +1,12 @@
-import { Container, Paper } from '@mui/material';
+import { Container, Paper, Typography } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import PostService from '../../API/PostService';
 
-const PostComponent = (plan) => {
+const PostComponent = (post) => {
   
   return (
     <Paper sx={{p: '6vh', mt: 4, justifyContent: "center", textAlign: "center" }} elevation={3}>
-        Single Post
+        <Typography variant="body2">{post.post.plan.hotel}</Typography>
     </Paper>
   );
 };

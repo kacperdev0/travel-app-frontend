@@ -15,15 +15,12 @@ const ExplorePageComponent = () => {
     fetch()
   }, [])
 
-  useEffect(() => {
-    console.log(posts)
-  }, [posts])
-  
   return (
     <Container>
       <Grid direction="column">
-        <PostComponent/>
-        <PostComponent/>
+        { posts.map((post) => (
+          <PostComponent post={post}/>
+        ))}
       </Grid>
     </Container>
   );
