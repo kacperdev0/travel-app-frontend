@@ -2,6 +2,7 @@ import { Container, Grid } from '@mui/material';
 import React, { useEffect, useState } from 'react';
 import PostService from '../../API/PostService';
 import PostComponent from './PostComponent';
+import { getPlaceById } from '../../Objects/GetPlaceById';
 
 const ExplorePageComponent = () => {
   const [posts, setPosts] = useState([])
