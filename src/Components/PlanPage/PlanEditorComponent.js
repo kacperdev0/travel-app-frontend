@@ -139,7 +139,7 @@ const PlanEditorComponent = ({
 
     return (
         <Grid container className={styles.container}>
-            <Grid item xs={12} md={4} display="flex">
+            <Grid item xs={12} md={3} display="flex">
                 <Box width="100%" height="90hv" display="flex" flexDirection="column">
                     <PlannerIconsComponent
                         hotel={hotel}
@@ -159,8 +159,13 @@ const PlanEditorComponent = ({
                             setSelectedElement={setSelectedElement}/>)}
                 </Box>
             </Grid>
+            <Grid item xs={12} md={2} display="flex">
+                <Box width="100%" height="90hv" display="flex" flexDirection="column">
+                    
+                </Box>
+            </Grid>
 
-            <Grid item xs={12} md={8} height='90vh'>
+            <Grid item xs={12} md={7} height='90vh'>
                 <SearchBarComponent setMainLocation={setMapCentre}/>
                 <MapComponent
                     location={mapCentre}
