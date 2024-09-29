@@ -3,7 +3,7 @@ import styles from '../../CSS/MapStyle.module.css';
 import { ListItem, List, ListItemText, Paper, Button, Grid } from '@mui/material';
 import HotelDataComponent from './HotelDataComponent';
 
-const ElementListComponent = ({points, setFinal, selectedElement, setSelectedElement}) => {
+const ElementListComponent = ({points, setFinal, selectedElement, setSelectedElement, addLocation}) => {
 
   return (
     <Grid height="80vh">
@@ -14,7 +14,9 @@ const ElementListComponent = ({points, setFinal, selectedElement, setSelectedEle
             </Grid>
 
             <Grid marginTop="3vh">
-              <Button variant='contained' onClick={() => setFinal(selectedElement)}>Select</Button>
+              <Button variant='contained' onClick={() => {
+                addLocation(selectedElement)
+              }}>Select</Button>
             </Grid>
           </Grid>
         ) : (

@@ -20,6 +20,8 @@ const PlanEditorComponent = ({
     airportDeparture,
     setAirportDeparture,
     airportArrival,
+    plans,
+    addLocation,
     setAirportArrival,
     savePlan
 }) => {
@@ -64,6 +66,9 @@ const PlanEditorComponent = ({
             console.error("Geolocation is not supported by this browser.");
             setLoading(false);
         }
+
+
+        console.log(plans);
     }, []);
 
     useEffect(() => {
@@ -154,6 +159,7 @@ const PlanEditorComponent = ({
                         ? (<LoadingComponent/>)
                         : (<ElementsListComponent
                             points={points}
+                            addLocation={addLocation}
                             setFinal={setFinal}
                             selectedElement={selectedElement}
                             setSelectedElement={setSelectedElement}/>)}
@@ -161,7 +167,9 @@ const PlanEditorComponent = ({
             </Grid>
             <Grid item xs={12} md={2} display="flex">
                 <Box width="100%" height="90hv" display="flex" flexDirection="column">
-                    
+                    {plans.map((loc) => (
+                        <span>{loc.name}</span>
+                    ))}
                 </Box>
             </Grid>
 

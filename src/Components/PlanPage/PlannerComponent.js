@@ -6,6 +6,8 @@ import { handleLoginError} from '../../Objects/HandleLogin'
 import SelectSaveSlotComponent from './SelectSaveSlotComponent';
 import PlanEditorComponent from './PlanEditorComponent';
 import { useNavigate } from 'react-router-dom';
+import PlanEditor from '../../Objects/PlanEditor';
+
 
 const PlannerComponent = () => {
   const [hotel, setHotel] = useState(null)
@@ -13,10 +15,17 @@ const PlannerComponent = () => {
   const [airportArrival, setAirportArrival] = useState(null)
   const [saving, setSaving] = useState(false)
 
+  const [plans, setPlans] = useState([])
+
   const navigate = useNavigate()
 
   const savePlan = () => {
     setSaving(true)
+  }
+
+  const addLocation = (location) => {
+    setPlans([...plans, location])
+    console.log(plans)
   }
 
 
@@ -33,6 +42,8 @@ const PlannerComponent = () => {
         <PlanEditorComponent hotel={hotel} setHotel={setHotel}
          airportDeparture={airportDeparture} setAirportDeparture={setAirportDeparture}
          airportArrival={airportArrival} setAirportArrival={setAirportArrival}
+         plans={plans}
+         addLocation={addLocation}
          savePlan={savePlan} 
         />
       )}

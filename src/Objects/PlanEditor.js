@@ -1,17 +1,16 @@
-class PlanEditor {
-    constructor() {
-        this.plan = []
+import { useState } from "react"
+
+const PlanEditor = () => {
+    const [plans, setPlans] = useState([{name: "hotel"}])
+
+    const addLocation = (location) => {
+        setPlans([...plans, location])
     }
 
-    addLocation(location) {
-        this.plan.push(location)
-    }
-
-    getPlan() {
-        return this.plan
-    }
-
-    getPlanJSON() {
-        return JSON.stringify(this.plan)
+    return {
+        plans,
+        addLocation,
     }
 }
+
+export default PlanEditor
