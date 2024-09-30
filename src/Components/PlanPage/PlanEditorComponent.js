@@ -13,6 +13,7 @@ import {useLocation, useNavigate} from 'react-router-dom';
 import {getPlaceById} from '../../Objects/GetPlaceById';
 import LoadingComponent from '../LoadingComponent';
 import SelectSaveSlotComponent from './SelectSaveSlotComponent';
+import SingleLocationComponent from './SingleLocationComponent';
 
 const PlanEditorComponent = ({
     hotel,
@@ -166,9 +167,15 @@ const PlanEditorComponent = ({
                 </Box>
             </Grid>
             <Grid item xs={12} md={2} display="flex">
-                <Box width="100%" height="90hv" display="flex" flexDirection="column">
+                <Box 
+                    width="100%" 
+                    height="90hv" 
+                    display="flex" 
+                    flexDirection="column"
+                    padding="2vh" 
+                >
                     {plans.map((loc) => (
-                        <span>{loc.name}</span>
+                        <SingleLocationComponent location={loc} />
                     ))}
                 </Box>
             </Grid>
