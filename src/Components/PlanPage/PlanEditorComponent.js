@@ -172,7 +172,7 @@ const PlanEditorComponent = ({
                     height="90hv" 
                     display="flex" 
                     flexDirection="column"
-                    padding="2vh" 
+                    padding="4vh" 
                 >
                     {plans.map((loc) => (
                         <SingleLocationComponent location={loc} />
