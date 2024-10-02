@@ -31,10 +31,10 @@ const SelectSaveSlotComponent = ({ plan }) => {
   const savePlan = () => {
       console.log("HOTEL IN SAVE SLOT", plan)
       let ids = []
-      plan.map((index, loc) => (
+      plan.map((loc) => (
         ids.push(loc.id)
       ))
-      console.log(ids)
+      
       PlanService.savePlan(
         {
           "locations": JSON.stringify(ids)
