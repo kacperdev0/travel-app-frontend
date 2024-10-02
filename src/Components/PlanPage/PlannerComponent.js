@@ -34,9 +34,7 @@ const PlannerComponent = () => {
     <Grid container className={styles.container}>
       {saving ? (
         <SelectSaveSlotComponent 
-         hotelId={hotel}
-         airportDepartureId={airportDeparture}
-         airportArrivalId={airportArrival}
+         plan={plans}
         />
       ) : (
         <PlanEditorComponent

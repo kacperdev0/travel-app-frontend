@@ -5,7 +5,7 @@ import KeyboardReturnIcon from '@mui/icons-material/KeyboardReturn';
 const SingleLocationComponent = ({ location }) => {
 
   return (
-    <Paper elevation={3} mb="10vh" sx={{p: "0.5vh", mb: "1vh"}}>
+    <Paper elevation={3} mb="10vh" sx={{p: "1vh", mb: "1vh"}}>
         {location.tags.name}
     </Paper>
   );

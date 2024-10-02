@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import PlanService from '../../API/PlanService';
 import { handleLoginError } from '../../Objects/HandleLogin';
 
-const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId }) => {
+const SelectSaveSlotComponent = ({ plan }) => {
   const maxSlots = 10;
 
   const [slots, setSlots] = useState([]);
@@ -29,25 +29,30 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
 
   
   const savePlan = () => {
-      console.log("HOTEL IN SAVE SLOT", hotelId)
-      PlanService.savePlan( 
-      {
-        "hotel": hotelId,
-        "airportArrival": airportArrivalId,
-        "airportDeparture": airportDepartureId
-      }
-    )
+      console.log("HOTEL IN SAVE SLOT", plan)
+      let ids = []
+      plan.map((index, loc) => (
+        ids.push(loc.id)
+      ))
+      console.log(ids)
+      PlanService.savePlan(
+        {
+          "locations": JSON.stringify(ids)
+        }
+      )
     navigate("/profile")
   }
 
   const overwritePlan = (id) => {
-    console.log("HOTEL IN OVERWRITE SLOT", id, hotelId)
+    let ids = []
+    plan.map((index, loc) => (
+      ids.push(loc.id)
+    ))
+
     PlanService.overwritePlan(
       {
         "id": id,
-        "hotel": hotelId,
-        "airportArrival": airportArrivalId,
-        "airportDeparture": airportDepartureId
+        "locations": JSON.stringify(ids)
       }
     )
     navigate("/profile")
@@ -79,7 +84,7 @@ const SelectSaveSlotComponent = ({ hotelId, airportDepartureId, airportArrivalId
                   onClick={() => {
                     overwritePlan(plan.id)
                   }}>
-                    <Typography variant="h8">{`Plan ${plan.hotel}`}</Typography><br></br>
+                    <Typography variant="h8">{`Plan ${plan.id}`}</Typography><br></br>
                     <Typography variant="h10">{`Date: ${plan.saveTime}`}</Typography>
                   </div>
                 ) : (

@@ -5,7 +5,7 @@ import FlightLandIcon from '@mui/icons-material/FlightLand';
 import KingBedIcon from '@mui/icons-material/KingBed';
 import { Navigate, useNavigate } from 'react-router-dom';
 
-const PlannerIconsComponent = ({hotel, chooseHotel, airportDeparture, chooseAirportDeparture, airportArrival, chooseAirportArrival, save}) => {
+const PlannerIconsComponent = ({chooseHotel, chooseAirportDeparture, save}) => {
   const navigate = useNavigate()
 
   const blueBackground = {
