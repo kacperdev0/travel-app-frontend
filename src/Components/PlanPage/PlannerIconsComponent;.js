@@ -18,20 +18,15 @@ const PlannerIconsComponent = ({hotel, chooseHotel, airportDeparture, chooseAirp
 
   return (
       <Grid container height="8hv" width="95%" marginTop="2%" marginLeft="5%" spacing={1}>
-        <Grid textAlign="center" item xs={2}>
-          <Paper style={hotel ? blueBackground : {}} onClick={chooseHotel}>
-            <IconButton><KingBedIcon style={hotel ? whiteIcon : {}}/></IconButton>
+        <Grid textAlign="center" item xs={3}>
+          <Paper onClick={chooseHotel}>
+            <IconButton><KingBedIcon/></IconButton>
           </Paper>
         </Grid>
-        <Grid textAlign="center" item xs={2}>
-          <Paper style={airportDeparture ? blueBackground : {}} onClick={chooseAirportDeparture}>
-          <IconButton variant="contained"><FlightTakeoffIcon style={airportDeparture ? whiteIcon : {}}/></IconButton>
+        <Grid textAlign="center" item xs={3}>
+          <Paper onClick={chooseAirportDeparture}>
+          <IconButton variant="contained"><FlightTakeoffIcon/></IconButton>
           </Paper>
-        </Grid>
-        <Grid textAlign="center" item xs={2}>
-            <Paper style={airportArrival ? blueBackground : {}} onClick={chooseAirportArrival}>
-                <IconButton><FlightLandIcon style={airportArrival ? whiteIcon : {}}/></IconButton>  
-            </Paper>
         </Grid>
         <Grid textAlign="center" item xs={2.4}>
           <Button variant="contained"

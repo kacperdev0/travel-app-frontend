@@ -16,14 +16,8 @@ import SelectSaveSlotComponent from './SelectSaveSlotComponent';
 import SingleLocationComponent from './SingleLocationComponent';
 
 const PlanEditorComponent = ({
-    hotel,
-    setHotel,
-    airportDeparture,
-    setAirportDeparture,
-    airportArrival,
     plans,
     addLocation,
-    setAirportArrival,
     savePlan
 }) => {
     const [step,
@@ -45,9 +39,6 @@ const PlanEditorComponent = ({
     useEffect(() => {
         try {
             const plan = location.state.data;
-            setHotel(plan.hotel);
-            setAirportArrival(plan.airportArrival);
-            setAirportDeparture(plan.airportDeparture);
             console.log(plan);
         } catch {
             console.log("There is no data passed threw save")
@@ -128,19 +119,7 @@ const PlanEditorComponent = ({
     };
 
     const setFinal = (element) => {
-        switch (step) {
-            case 1:
-                setHotel(element.id);
-                break;
-            case 2:
-                setAirportDeparture(element.id);
-                break;
-            case 3:
-                setAirportArrival(element.id);
-                break;
-            default:
-                break;
-        }
+
     };
 
     return (
@@ -148,11 +127,8 @@ const PlanEditorComponent = ({
             <Grid item xs={12} md={3} display="flex">
                 <Box width="100%" height="90hv" display="flex" flexDirection="column">
                     <PlannerIconsComponent
-                        hotel={hotel}
                         chooseHotel={() => setStep(1)}
-                        airportDeparture={airportDeparture}
                         chooseAirportDeparture={() => setStep(2)}
-                        airportArrival={airportArrival}
                         chooseAirportArrival={() => setStep(3)}
                         save={savePlan}/> 
                         

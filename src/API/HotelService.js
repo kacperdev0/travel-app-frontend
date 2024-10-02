@@ -8,11 +8,13 @@ class HotelService {
             latitude: location[0],
             longitude: location[1],
           };
+          console.log(data)
         return axios.post(`${HOTEL_API_URL}/searchHotels`, data, {
             headers: {
                 'Content-Type': 'application/json'
             }
         }).then((res) => {
+            console.log(res.data.elements);
             return res.data.elements || []
           })
         .catch((error) => {

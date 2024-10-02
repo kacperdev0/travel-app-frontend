@@ -8,6 +8,7 @@ class AirportService {
             latitude: location[0],
             longitude: location[1],
           };
+          console.log(data)
           return axios.post(`${AIRPORT_API_URL}/searchAirports`, data, {
             headers: {
                 'Content-Type': 'application/json'

@@ -39,9 +39,7 @@ const PlannerComponent = () => {
          airportArrivalId={airportArrival}
         />
       ) : (
-        <PlanEditorComponent hotel={hotel} setHotel={setHotel}
-         airportDeparture={airportDeparture} setAirportDeparture={setAirportDeparture}
-         airportArrival={airportArrival} setAirportArrival={setAirportArrival}
+        <PlanEditorComponent
          plans={plans}
          addLocation={addLocation}
          savePlan={savePlan} 
