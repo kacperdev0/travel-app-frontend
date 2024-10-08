@@ -41,6 +41,7 @@ const PlannerComponent = () => {
          plans={plans}
          addLocation={addLocation}
          savePlan={savePlan} 
+         setPlans={setPlans}
         />
       )}
     </Grid>

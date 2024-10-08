@@ -19,7 +19,8 @@ import ListLocationsComponent from './ListLocationsComponent';
 const PlanEditorComponent = ({
     plans,
     addLocation,
-    savePlan
+    savePlan,
+    setPlans
 }) => {
     const [step,
         setStep] = useState(1);
@@ -144,7 +145,7 @@ const PlanEditorComponent = ({
                 </Box>
             </Grid>
             <Grid item xs={12} md={2} display="flex">
-                <ListLocationsComponent plans={plans}/>
+                <ListLocationsComponent plans={plans} setPlans={setPlans}/>
             </Grid>
 
             <Grid item xs={12} md={7} height='90vh'>
