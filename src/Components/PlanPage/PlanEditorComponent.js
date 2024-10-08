@@ -14,6 +14,7 @@ import {getPlaceById} from '../../Objects/GetPlaceById';
 import LoadingComponent from '../LoadingComponent';
 import SelectSaveSlotComponent from './SelectSaveSlotComponent';
 import SingleLocationComponent from './SingleLocationComponent';
+import ListLocationsComponent from './ListLocationsComponent';
 
 const PlanEditorComponent = ({
     plans,
@@ -143,17 +144,7 @@ const PlanEditorComponent = ({
                 </Box>
             </Grid>
             <Grid item xs={12} md={2} display="flex">
-                <Box 
-                    width="100%" 
-                    height="90hv" 
-                    display="flex" 
-                    flexDirection="column"
-                    padding="4vh" 
-                >
-                    {plans.map((loc) => (
-                        <SingleLocationComponent location={loc} />
-                    ))}
-                </Box>
+                <ListLocationsComponent plans={plans}/>
             </Grid>
 
             <Grid item xs={12} md={7} height='90vh'>
