@@ -123,6 +123,7 @@ const PlanEditorComponent = ({
     const setFinal = (element) => {
 
     };
+    
 
     return (
         <Grid container className={styles.container}>
@@ -145,7 +146,7 @@ const PlanEditorComponent = ({
                 </Box>
             </Grid>
             <Grid item xs={12} md={2} display="flex">
-                <ListLocationsComponent plans={plans} setPlans={setPlans}/>
+                <ListLocationsComponent plans={plans} setPlans={setPlans} />
             </Grid>
 
             <Grid item xs={12} md={7} height='90vh'>
