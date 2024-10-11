@@ -35,10 +35,6 @@ class PlanService {
         }).then((res) => {
             return res || []
           })
-        .catch((error) => {
-            console.error('Error fetching plans:', error);
-            return [];
-        });
     }
 
     togglePlanPublicity(id) {

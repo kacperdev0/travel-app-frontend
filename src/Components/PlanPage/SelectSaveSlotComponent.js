@@ -14,18 +14,15 @@ const SelectSaveSlotComponent = ({ plan }) => {
     const fetchData = async () => {
       try {
         const plansRes = await PlanService.getPlans();
-        if (plansRes.data) {
-          setSlots([...plansRes.data, ...Array(maxSlots).fill(null)].slice(0, maxSlots));
-          console.log(slots)
-        }
-        
+        console.log(plansRes.data);
+
       } catch (error) {
-        handleLoginError(navigate, error, "/");
+        handleLoginError(navigate, error, "/profile")
       }
     };
 
     fetchData();
-  }, []);
+  }, [navigate]);
 
   
   const savePlan = () => {
