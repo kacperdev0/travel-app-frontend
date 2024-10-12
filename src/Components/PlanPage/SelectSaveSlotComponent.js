@@ -14,7 +14,13 @@ const SelectSaveSlotComponent = ({ plan }) => {
     const fetchData = async () => {
       try {
         const plansRes = await PlanService.getPlans();
-        console.log(plansRes.data);
+        const plans = plansRes.data
+
+        for (let i = plans.length; i < maxSlots; i++) {
+          plans.push(null)
+        }
+
+        setSlots(plans)
 
       } catch (error) {
         handleLoginError(navigate, error, "/profile")
