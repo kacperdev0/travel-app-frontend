@@ -13,7 +13,7 @@ export const getPlaceById = async (placeId) => {
         data: query,
       }
     });
-    return response.data.elements[0];
+    return response.data.elements[0] || [];
   } catch (error) {
     console.error("Error fetching data from Overpass API", error);
     return null;

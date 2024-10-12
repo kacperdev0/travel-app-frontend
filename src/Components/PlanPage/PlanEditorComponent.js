@@ -39,12 +39,21 @@ const PlanEditorComponent = ({
     const location = useLocation()
 
     useEffect(() => {
-        try {
-            const plan = location.state.data;
-            console.log(plan);
-        } catch {
-            console.log("There is no data passed threw save")
-        }
+        const fetchData = async () => {
+            try {
+                const plans = JSON.parse(location.state.data.locations)
+                console.log(plans)
+                const locationPromises = plans.map(plan => getPlaceById(plan))
+                const locations = await Promise.all(locationPromises)
+        
+                console.log(locations);
+                setPlans(locations)
+            } catch (error) {
+                console.error('Error fetching locations:', error);
+            }
+        };
+
+        fetchData()
 
         if (navigator.geolocation) {
             navigator
