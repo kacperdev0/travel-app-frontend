@@ -28,6 +28,7 @@ const ProfileComponent = () => {
     };
 
     fetchData();
+    console.log(plans)
   }, [navigate]);
 
   return (

@@ -15,6 +15,21 @@ const PlanCard = ({plan}) => {
 
     useEffect(() => {})
 
+    const formatTime = (timestamp) => {
+        const date = new Date(timestamp);
+
+        const options = {
+          year: 'numeric',
+          month: '2-digit',
+          day: '2-digit',
+          hour: '2-digit',
+          minute: '2-digit',
+          hour12: false 
+        };
+      
+        return date.toLocaleString('en-US', options);
+    }
+
     return (
         <Paper
             elevation={3}
@@ -57,7 +72,7 @@ const PlanCard = ({plan}) => {
                 </IconButton>
             </Stack>
             <Typography variant="body1">
-                Hotel: {plan.hotel}
+                Save time: {formatTime(plan.saveTime)}
             </Typography>
             <Box
                 position="absolute"
