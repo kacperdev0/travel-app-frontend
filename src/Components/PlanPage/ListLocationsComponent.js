@@ -8,15 +8,14 @@ const ListLocationsComponent = ({ plans, setPlans }) => {
     const id = event.dataTransfer.getData("text/plain");
     const draggedItem = plans.find(plan => plan.id.toString() === id);
 
-    // Get the index of the dragged item and the drop target
     const draggedIndex = plans.indexOf(draggedItem);
-    const dropIndex = Number(event.target.getAttribute('data-index'));
+    const dropIndex = Number(event.target.getAttribute('plan-index'));
 
     if (draggedIndex !== -1 && dropIndex !== -1 && draggedIndex !== dropIndex) {
-      const updatedPlans = [...plans];
-      updatedPlans.splice(draggedIndex, 1); // Remove the dragged item
-      updatedPlans.splice(dropIndex, 0, draggedItem); // Insert it at the new position
-      setPlans(updatedPlans);
+      const updatedPlans = [...plans]
+      updatedPlans.splice(draggedIndex, 1)
+      updatedPlans.splice(dropIndex, 0, draggedItem)
+      setPlans(updatedPlans)
     }
   };
 
@@ -33,7 +32,7 @@ const ListLocationsComponent = ({ plans, setPlans }) => {
           onDragStart={(event) => event.dataTransfer.setData("text/plain", plan.id.toString())}
           onDragOver={handleDragOver}
           onDrop={handleDrop} 
-          data-index={index} 
+          plan-index={index} 
           style={{
             padding: "8px",
           }}
